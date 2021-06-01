@@ -20,10 +20,11 @@ class CitasQuiropractica extends Migration
             $table->string('apellido_materno');
             $table->string('email');
             $table->string('consultorio');
+            $table->string('estatus');
             $table->date('fecha');
             $table->string('hora');
             $table->string('folio');
-            $table->timestamp('creada');
+            $table->timestamps();
             });
     }
 

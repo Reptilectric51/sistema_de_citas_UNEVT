@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 //----------------------------------------------------citas quiropractica----------------------------------------------------
 Route::name('citasq')->get('citasq/', 'App\Http\Controllers\sistemcontroller@citas_quiropractica');
+Route::name('agendarCitaq')->get('agendarcitaq/', 'App\Http\Controllers\sistemcontroller@agendar_cita_quiropractica');
+Route::name('guardarcitaq')->post('guardarcitaq/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropractica');
+Route::name('comprobantecitaq')->get('comprobantecitaq/', 'App\Http\Controllers\sistemcontroller@comprobantecitaq');
+

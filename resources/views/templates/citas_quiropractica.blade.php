@@ -58,7 +58,7 @@
                     <td>{{$cita->fecha}}</td>
                     <td>{{$cita->hora}}</td>
                     <td>{{$cita->folio}}</td>
-                    <td>{{$cita->creada}}</td>
+                    <td>{{$cita->created_at}}</td>
                 </tr>
             </tbody>
             @endforeach

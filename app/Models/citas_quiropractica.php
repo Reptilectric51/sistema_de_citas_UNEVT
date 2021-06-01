@@ -17,9 +17,9 @@ class citas_quiropractica extends Model
         'apellido_materno',
         'email',
         'consultorio',
+        'estatus',
         'fecha',
         'hora',
         'folio',
-        'creada',
     ];
 }
