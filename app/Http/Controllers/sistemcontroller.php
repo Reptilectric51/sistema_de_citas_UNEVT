@@ -27,6 +27,7 @@ class sistemcontroller extends Controller
         list($horas,$minutos) = explode(":",$hora);
         $folio = "Q".$consultorio."-".$dia.$horas;
         $estatus = "Activo";
+        $email = $request['correo'];
 
         $citas = citas_quiropractica::create(array(
             'nombre'=>$request->input('nombre'),
@@ -39,16 +40,11 @@ class sistemcontroller extends Controller
             'hora'=>$request->input('hora'),
             'folio'=>$folio,
         ));
-        return redirect()->route('comprobantecitaq');
-    }
-
-    $email = "junolik.245@outlook.com";
-
-    public function comprobantecitaq(Request $request)
-    {
-        $citas = DB::select('SELECT * FROM citas_quiropráctica WHERE email = "$email"');
+        $sql = "";
+        $cita = DB::select("SELECT * FROM citas_quiropráctica WHERE email = '$email'");
         return view("templates.comprobante_quiropractica")
-        ->with(['citas' => $citas]);
+        ->with(['cita' => $cita]);
+    
     }
 
 }
