@@ -40,7 +40,6 @@ class sistemcontroller extends Controller
             'hora'=>$request->input('hora'),
             'folio'=>$folio,
         ));
-        $sql = "";
         $cita = DB::select("SELECT * FROM citas_quiropráctica WHERE email = '$email'");
         return view("templates.comprobante_quiropractica")
         ->with(['cita' => $cita]);
