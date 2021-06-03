@@ -29,21 +29,26 @@ class sistemcontroller extends Controller
         $estatus = "Activo";
         $email = $request['correo'];
 
-        $citas = citas_quiropractica::create(array(
-            'nombre'=>$request->input('nombre'),
-            'apellido_paterno'=>$request->input('apellidop'),
-            'apellido_materno'=>$request->input('apellidom'),
-            'email'=>$request->input('correo'),
-            'consultorio'=>$request->input('consultorio'),
-            'estatus'=>$estatus,
-            'fecha'=>$request->input('fecha'),
-            'hora'=>$request->input('hora'),
-            'folio'=>$folio,
-        ));
-        $cita = DB::select("SELECT * FROM citas_quiropráctica WHERE email = '$email'");
-        return view("templates.comprobante_quiropractica")
-        ->with(['cita' => $cita]);
-    
+        $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+        if (count($citaexiste) == 0){
+            $citas = citas_quiropractica::create(array(
+                'nombre'=>$request->input('nombre'),
+                'apellido_paterno'=>$request->input('apellidop'),
+                'apellido_materno'=>$request->input('apellidom'),
+                'email'=>$request->input('correo'),
+                'consultorio'=>$request->input('consultorio'),
+                'estatus'=>$estatus,
+                'fecha'=>$request->input('fecha'),
+                'hora'=>$request->input('hora'),
+                'folio'=>$folio,
+            ));
+            $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+            return view("templates.comprobante_quiropractica")
+            ->with(['cita' => $cita]);
+        }else{
+            echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
+        }
+    /**/ 
     }
 
 }

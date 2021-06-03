@@ -17,7 +17,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select><br><br>
-            <label>Ingrese la fecha de su cita*:</label><input type="date" name="fecha"><br><br>
+            <label>Ingrese la fecha de su cita*:</label><input type="date" name="fecha" required><br><br>
             <label>Hora*:</label><select name="hora" required>
                 <option selected value="">Elije una opción por favor</option>
                 <option value="08:00">08:00</option>

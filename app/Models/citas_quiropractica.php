@@ -9,7 +9,7 @@ class citas_quiropractica extends Model
 {
     use HasFactory;
 
-    protected $table = 'citas_quiropráctica';
+    protected $table = 'citas_quiropractica';
 
     protected $fillable = [
         'nombre',
