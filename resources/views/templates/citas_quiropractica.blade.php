@@ -7,6 +7,11 @@
 
 <body>
     <h1>Reporte de citas de área de quiropráctica</h1>
+    <form action="{{route('buscarcq')}}" method="POST">
+        {{ csrf_field() }}
+        <input type="text" placeholder="Ingrese termino de busqueda" name="tb">
+        <input type="submit" value="Buscar"><br><br>
+    </form>
     <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
         <thead>
             <tr>
