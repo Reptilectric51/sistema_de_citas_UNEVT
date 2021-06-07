@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\citas_quiropractica;
+use App\Models\pacientes;
 use Illuminate\Support\Facades\DB;
 
 class sistemcontroller extends Controller
-{
+{   
+//-------------------------------------------Quiropractica------------------------------------
     public function citas_quiropractica()
     {
         $citas = citas_quiropractica::all();
@@ -31,41 +33,79 @@ class sistemcontroller extends Controller
         $fechaactual = date("Y-m-d");
         $mesactual = date("m");
         $añoactual = date("Y");
-        if ($fecha < $fechaactual ){
-            echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); window.location.href="agendarcitaq/";</script>';
-        }elseif ($mesactual < $mes){
-                echo '<script language="javascript">alert("No puedes agendar una cita con fecha del mes siguiente"); window.location.href="agendarcitaq/";</script>';
+        $nombre = $request['nombre'];
+        $apellidop = $request['apellidop'];
+        $apellidopm = $request['apellidom'];
+        $nombre_completo = $nombre." ".$apellidop." ".$apellidopm;
+        $pacienteexiste = DB::select("SELECT * FROM pacientes WHERE nombre_completo = '$nombre_completo'");
+        if(count($pacienteexiste) == 1){
+            if ($fecha < $fechaactual ){
+                echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); window.location.href="agendarcitaq/";</script>';
+            }elseif ($añoactual < $año){
+                        echo '<script language="javascript">alert("No puedes agendar una cita con un año superior al actual"); window.location.href="agendarcitaq/";</script>';
+                    }else{
+                        $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+            if (count($citaexiste) == 0){
+                $citas = citas_quiropractica::create(array(
+                    'nombre'=>$request->input('nombre'),
+                    'apellido_paterno'=>$request->input('apellidop'),
+                    'apellido_materno'=>$request->input('apellidom'),
+                    'email'=>$request->input('correo'),
+                    'consultorio'=>$request->input('consultorio'),
+                    'estatus'=>$estatus,
+                    'fecha'=>$request->input('fecha'),
+                    'hora'=>$request->input('hora'),
+                    'folio'=>$folio,
+                ));
+                $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+                return view("templates.comprobante_quiropractica")
+                ->with(['cita' => $cita]);
+            }else{
+                echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
             }
-                elseif ($añoactual < $año){
-                    echo '<script language="javascript">alert("No puedes agendar una cita con un año superior al actual"); window.location.href="agendarcitaq/";</script>';
-                }else{
-                    $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-        if (count($citaexiste) == 0){
-            $citas = citas_quiropractica::create(array(
-                'nombre'=>$request->input('nombre'),
-                'apellido_paterno'=>$request->input('apellidop'),
-                'apellido_materno'=>$request->input('apellidom'),
-                'email'=>$request->input('correo'),
-                'consultorio'=>$request->input('consultorio'),
-                'estatus'=>$estatus,
-                'fecha'=>$request->input('fecha'),
-                'hora'=>$request->input('hora'),
-                'folio'=>$folio,
-            ));
-            $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-            return view("templates.comprobante_quiropractica")
-            ->with(['cita' => $cita]);
+                    }
         }else{
-            echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
+            if ($fecha < $fechaactual ){
+                echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); window.location.href="agendarcitaq/";</script>';
+            }elseif ($añoactual < $año){
+                        echo '<script language="javascript">alert("No puedes agendar una cita con un año superior al actual"); window.location.href="agendarcitaq/";</script>';
+                    }else{
+                        $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+            if (count($citaexiste) == 0){
+                $paciente = pacientes::create(array(
+                    'nombre_completo'=>$nombre_completo,
+                    'numero_movil'=>"7221010602",
+                    'numero_fijo'=>"",
+                    'lugar_de_procedencia'=>"Xonacatlan",
+                    'email'=>$email,
+                ));
+                $citas = citas_quiropractica::create(array(
+                    'nombre'=>$request->input('nombre'),
+                    'apellido_paterno'=>$request->input('apellidop'),
+                    'apellido_materno'=>$request->input('apellidom'),
+                    'email'=>$email,
+                    'consultorio'=>$request->input('consultorio'),
+                    'estatus'=>$estatus,
+                    'fecha'=>$request->input('fecha'),
+                    'hora'=>$request->input('hora'),
+                    'folio'=>$folio,
+                ));
+                $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+                return view("templates.comprobante_quiropractica")
+                ->with(['cita' => $cita]);
+            }else{
+                echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
+            }
+                    }
         }
-                }
+        /*
        /*
     /**/ 
     }
 
     public function buscarcq(Request $request){
         $termb = $request['tb'];
-        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE nombre LIKE '%$termb%'");
+        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE nombre LIKE '%$termb%' OR folio = '$termb'");
         return view("templates.citas_quiropractica")
             ->with(['citas' => $citas]);
     }
