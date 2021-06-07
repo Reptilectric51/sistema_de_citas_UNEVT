@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class sistemcontroller extends Controller
 {   
-//-------------------------------------------Quiropractica------------------------------------
+//-------------------------------------------Quiropractica------------------------------------//
     public function citas_quiropractica()
     {
         $citas = citas_quiropractica::all();
@@ -47,10 +47,10 @@ class sistemcontroller extends Controller
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
                 $citas = citas_quiropractica::create(array(
-                    'nombre'=>$request->input('nombre'),
-                    'apellido_paterno'=>$request->input('apellidop'),
-                    'apellido_materno'=>$request->input('apellidom'),
-                    'email'=>$request->input('correo'),
+                    'nombre'=> strtoupper($request->input('nombre')),
+                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
+                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'email'=> strtoupper($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=>$estatus,
                     'fecha'=>$request->input('fecha'),
@@ -73,17 +73,17 @@ class sistemcontroller extends Controller
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
                 $paciente = pacientes::create(array(
-                    'nombre_completo'=>$nombre_completo,
-                    'numero_movil'=>"7221010602",
-                    'numero_fijo'=>"",
-                    'lugar_de_procedencia'=>"Xonacatlan",
-                    'email'=>$email,
+                    'nombre_completo'=>strtoupper($nombre_completo),
+                    'numero_movil'=>$request['celular'],
+                    'numero_fijo'=>$request['telefono'],
+                    'lugar_de_procedencia'=>strtoupper($request['procedencia']),
+                    'email'=>($email),
                 ));
                 $citas = citas_quiropractica::create(array(
-                    'nombre'=>$request->input('nombre'),
-                    'apellido_paterno'=>$request->input('apellidop'),
-                    'apellido_materno'=>$request->input('apellidom'),
-                    'email'=>$email,
+                    'nombre'=> strtoupper($request->input('nombre')),
+                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
+                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'email'=> strtoupper($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=>$estatus,
                     'fecha'=>$request->input('fecha'),
@@ -101,6 +101,18 @@ class sistemcontroller extends Controller
         /*
        /*
     /**/ 
+    }
+
+    public function comprobantecqpdf(Request $request){
+        $folio = $request['folio'];
+        $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+        /*return view("templatespdf.comprobante_quiropracticapdf")
+        ->with(['cita' => $cita]);
+
+        /**/
+        $pdf = app('dompdf.wrapper');
+        $pdf ->loadView('templatespdf.comprobante_quiropracticapdf', ['cita' => $cita]);
+        return $pdf->download('comprobante de mi cita.pdf');
     }
 
     public function buscarcq(Request $request){

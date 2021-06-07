@@ -11,13 +11,6 @@
         <label>Fecha: </label><label>{{$citas->fecha}}</label><br>
         <label>Hora: </label><label>{{$citas->hora}}</label><br>
         <label>Folio: </label> <label>{{$citas->folio}}</label><br>
-        <form action="{{route('pdfcitacq')}}" method="POST">
-            {{ csrf_field() }}
-            <select name="folio" hidden>
-                <option hidden selected value="{{$citas->folio}}">{{$citas->folio}}</option>
-            </select>
-            <input type="submit" value="Descargar mi comprobante en formato pdf">
-        </form>
         @endforeach
         <p>Lo esperamos en la fecha marcada en su cita guarde este comprobante para recibir la atención</p>
     </body>
