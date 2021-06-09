@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('templates.index');
 });
 
+Route::get('iniciarsesion/', function () {
+    return view('templates.iniciar_sesion');
+});
+
+//----------------------------------------------------Inicio de sesión-------------------------------------------------------
+Route::name('login')->post('login/', 'App\Http\Controllers\loginController@validar');
+Route::name('bye')->get('bye/', 'App\Http\Controllers\loginController@logout');
 
 //----------------------------------------------------citas quiropractica----------------------------------------------------
 Route::name('citasq')->get('citasq/', 'App\Http\Controllers\sistemcontroller@citas_quiropractica');

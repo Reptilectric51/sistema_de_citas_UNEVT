@@ -13,7 +13,7 @@ class CitasQuiropractica extends Migration
      */
     public function up()
     {
-        Schema::create('citas_quiropráctica', function (Blueprint $table) {
+        Schema::create('citas_quiropractica', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('apellido_paterno');

@@ -6,6 +6,9 @@
 </head>
 
 <body>
+    @if(empty(session('session_id')))
+    <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=iniciarsesion/">
+    @else
     <h1>Reporte de citas de área de quiropráctica</h1>
     <form action="{{route('buscarcq')}}" method="POST">
         {{ csrf_field() }}
@@ -68,6 +71,7 @@
             </tbody>
             @endforeach
     </table>
+    @endif
 </body>
 
 </html>
