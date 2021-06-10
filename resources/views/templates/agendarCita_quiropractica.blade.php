@@ -3,22 +3,19 @@
     <head>
         <title>Agendar cita quiropractica</title>
         <style>
-            #caja{
-                text-transform: uppercase;
-            }
         </style>
     </head>
     <body>
         <h1>Por favor llena el siguiente formulario con tus datos para agendar la cita en el área de quiropractica</h1>
         <form action="{{route('guardarcitaq')}}" method="POST">
         {{ csrf_field() }}
-            <label>Nombre(s)*:</label><input id="caja" type="text" name="nombre" placeholder="ej: Kirby" required><br><br>
-            <label>Apellido paterno*:</label><input id="caja" type="text" name="apellidop" placeholder="ej: Martinez" required><br><br>
-            <label>Apellido materno*:</label><input id="caja" type="text" name="apellidom" placeholder="ej: Hernandez"required><br><br>
+            <label>Nombre(s)*:</label><input type="text" name="nombre" placeholder="ej: Kirby" required><br><br>
+            <label>Apellido paterno*:</label><input  type="text" name="apellidop" placeholder="ej: Martinez" required><br><br>
+            <label>Apellido materno*:</label><input  type="text" name="apellidom" placeholder="ej: Hernandez"required><br><br>
             <label>Correo electronico*:</label><input type="text" name="correo" placeholder="ej mail@mail.com" required><br><br>
             <label>Número celular*:</label><input type="tel" name="celular" pattern="[0-9]{10}" placeholder="Número de telefono a 10 digitos" maxlength="10" required><br><br>
             <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}" placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
-            <label>Lugar de procedencia*:</label><input id="caja" type="text" name="procedencia" placeholder="ej: Ocoyoacac"><br><br>    
+            <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac"><br><br>    
             <label>Consultorio*:</label><select name="consultorio" required>
                 <option selected value="">Elije una opción</option>
                 <option value="1">1</option>

@@ -21,6 +21,10 @@ Route::get('iniciarsesion/', function () {
     return view('templates.iniciar_sesion');
 });
 
+Route::name('index')->get('index/', function (){
+    return view('templates.sesion_exitosa');
+});
+
 //----------------------------------------------------Inicio de sesión-------------------------------------------------------
 Route::name('login')->post('login/', 'App\Http\Controllers\loginController@validar');
 Route::name('bye')->get('bye/', 'App\Http\Controllers\loginController@logout');

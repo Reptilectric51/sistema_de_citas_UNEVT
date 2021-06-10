@@ -17,6 +17,9 @@
                 <option hidden selected value="{{$citas->folio}}">{{$citas->folio}}</option>
             </select>
             <input type="submit" value="Descargar mi comprobante en formato pdf">
+        </form><br><br>
+        <form action="/" method="GET">
+            <input type="submit" value="Regresar al inicio">
         </form>
         @endforeach
         <p>Lo esperamos en la fecha marcada en su cita guarde este comprobante para recibir la atención</p>
