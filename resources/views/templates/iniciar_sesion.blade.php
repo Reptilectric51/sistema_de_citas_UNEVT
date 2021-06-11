@@ -15,6 +15,9 @@
                     <label>Contraseña*:</label>
                     <input type="password" name="contraseña" placeholder="Ingrese su contraseña" required><br><br>
                     <input type="submit" value="Iniciar sesión">
+                </form><br>
+                <form action="/" method="GET">
+                    <input type="submit" value="Regresar al inicio">
                 </form>
             </div>
 

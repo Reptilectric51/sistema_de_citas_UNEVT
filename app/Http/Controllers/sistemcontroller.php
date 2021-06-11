@@ -9,10 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class sistemcontroller extends Controller
 {   
+
+//-------------------------------------------Pacientes----------------------------------------//
+    public function Pacientes(){
+        $pacientes = pacientes::all();
+        return view("templates.pacientes")
+        ->with(['pacientes' => $pacientes]);
+    }
+
 //-------------------------------------------Quiropractica------------------------------------//
     public function citas_quiropractica()
     {
-        $citas = citas_quiropractica::all();
+        $citas = DB::table('citas_quiropractica')->simplepaginate(10);
         return view("templates.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
@@ -50,7 +58,7 @@ class sistemcontroller extends Controller
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
-                    'email'=> strtoupper($email),
+                    'email'=>($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=>$estatus,
                     'fecha'=>$request->input('fecha'),
@@ -83,9 +91,9 @@ class sistemcontroller extends Controller
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
-                    'email'=> strtoupper($email),
+                    'email'=> ($email),
                     'consultorio'=>$request->input('consultorio'),
-                    'estatus'=>$estatus,
+                    'estatus'=> strtoupper($estatus),
                     'fecha'=>$request->input('fecha'),
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
@@ -106,8 +114,6 @@ class sistemcontroller extends Controller
     public function comprobantecqpdf(Request $request){
         $folio = $request['folio'];
         $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-        /*return view("templatespdf.comprobante_quiropracticapdf")
-        ->with(['cita' => $cita]);
 
         /**/
         $pdf = app('dompdf.wrapper');
@@ -120,6 +126,44 @@ class sistemcontroller extends Controller
         $citas = DB::select("SELECT * FROM citas_quiropractica WHERE nombre LIKE '%$termb%' OR folio = '$termb'");
         return view("templates.citas_quiropractica")
             ->with(['citas' => $citas]);
+    }
+
+    public function modificarcita(Request $request){
+        $id = $request['id'];
+        $cestatus = $request['estatus'];
+        if($cestatus == 'CANCELADA'){
+            echo'<script type="text/javascript">
+            alert("Esta cita ya ha sido cancelado por lo tanto no es posible modificarla");
+            window.location.href="citasq/";
+            </script>';   
+        }else{
+        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE id = '$id'");
+        return view("templates.modificar_cita")
+        ->with(['citas' => $citas]);
+        }
+        /**/ 
+    }
+
+    public function salvarcita(Request $request){
+        $id = $request['id'];
+        $nombre = strtoupper($request['nombre']);
+        $apellidop = strtoupper($request['apellidop']);
+        $apellidom = strtoupper ($request['apellidom']);
+        $correo = $request['correo'];
+        $estatus = strtoupper($request['estatus']);
+        $folio = $request['folio'];
+        if($estatus != "CANCELADA"){
+            $folio = $request['folio'];
+
+        }else{
+            $folio = strtoupper("Cancelado");
+        }
+        /**/ 
+        $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folio' WHERE id = '$id'");
+        echo'<script type="text/javascript">
+        alert("Cita actualizada");
+        window.location.href="citasq/";
+        </script>';
     }
 
 }

@@ -29,11 +29,17 @@ Route::name('index')->get('index/', function (){
 Route::name('login')->post('login/', 'App\Http\Controllers\loginController@validar');
 Route::name('bye')->get('bye/', 'App\Http\Controllers\loginController@logout');
 
+//----------------------------------------------------Pacientes--------------------------------------------------------------
+Route::name('pacientes')->get('pacientes/', 'App\Http\Controllers\sistemcontroller@Pacientes');
+
+
 //----------------------------------------------------citas quiropractica----------------------------------------------------
 Route::name('citasq')->get('citasq/', 'App\Http\Controllers\sistemcontroller@citas_quiropractica');
 Route::name('agendarCitaq')->get('agendarcitaq/', 'App\Http\Controllers\sistemcontroller@agendar_cita_quiropractica');
 Route::name('guardarcitaq')->post('guardarcitaq/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropractica');
 Route::name('buscarcq')->post('buscarcq/', 'App\Http\Controllers\sistemcontroller@buscarcq');
 Route::name('pdfcitacq')->post('generandocomprobantecq/', 'App\Http\Controllers\sistemcontroller@comprobantecqpdf');
+Route::name('modificarcita')->post('modificarcita/', 'App\Http\Controllers\sistemcontroller@modificarcita');
+Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcontroller@salvarcita');
 
 
