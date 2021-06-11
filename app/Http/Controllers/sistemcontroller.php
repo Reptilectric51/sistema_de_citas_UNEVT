@@ -60,7 +60,7 @@ class sistemcontroller extends Controller
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
                     'email'=>($email),
                     'consultorio'=>$request->input('consultorio'),
-                    'estatus'=>$estatus,
+                    'estatus'=> strtoupper($estatus),
                     'fecha'=>$request->input('fecha'),
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,

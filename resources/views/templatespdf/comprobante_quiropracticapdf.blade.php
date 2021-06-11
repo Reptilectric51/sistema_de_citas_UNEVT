@@ -11,6 +11,7 @@
         <label>Fecha: </label><label>{{$citas->fecha}}</label><br>
         <label>Hora: </label><label>{{$citas->hora}}</label><br>
         <label>Folio: </label> <label>{{$citas->folio}}</label><br>
+        <p>{!!QrCode::size(300)->generate("{$citas->folio}") !!}</p>
         @endforeach
         <p>Lo esperamos en la fecha marcada en su cita guarde este comprobante para recibir la atención</p>
     </body>

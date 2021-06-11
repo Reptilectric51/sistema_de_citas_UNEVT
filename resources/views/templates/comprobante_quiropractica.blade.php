@@ -11,6 +11,9 @@
         <label>Fecha: </label><label>{{$citas->fecha}}</label><br>
         <label>Hora: </label><label>{{$citas->hora}}</label><br>
         <label>Folio: </label> <label>{{$citas->folio}}</label><br>
+        <div class="Código QR">
+        {!!QrCode::size(300)->generate("{$citas->folio}") !!}
+        </div>
         <form action="{{route('pdfcitacq')}}" method="POST">
             {{ csrf_field() }}
             <select name="folio" hidden>
