@@ -59,7 +59,7 @@ public function cancelarcita(Request $request)
 //-------------------------------------------Quiropractica------------------------------------//
     public function citas_quiropractica()
     {
-        $citas = DB::table('citas_quiropractica')->simplepaginate(10);
+        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(10);
         return view("templates.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
@@ -166,7 +166,7 @@ public function cancelarcita(Request $request)
 
     public function buscarcq(Request $request){
         $termb = $request['tb'];
-        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE nombre LIKE '%$termb%' OR folio = '$termb'");
+        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
         return view("templates.citas_quiropractica")
             ->with(['citas' => $citas]);
     }

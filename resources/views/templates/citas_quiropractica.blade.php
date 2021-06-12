@@ -124,7 +124,7 @@
     <div class="d-flex justify-content-center">
         {!! $citas->links() !!}
     </div>
-    @endif
-</body>
 
+</body>
+@endif
 </html>
