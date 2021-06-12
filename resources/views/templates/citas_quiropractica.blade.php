@@ -35,7 +35,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{session('session_name')}} <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Mis datos</a></li>
+                            <li><a href="{{route('misdatos')}}">Mis datos</a></li>
                             <li><a href="{{route('bye')}}">Cerrar sesión</a></li>
                         </ul>
                     </li>

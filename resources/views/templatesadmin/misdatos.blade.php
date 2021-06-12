@@ -35,7 +35,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{session('session_name')}} <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('misdatos')}}">Mis datos</a></li>
+                            <li><a href="#">Mis datos</a></li>
                             <li><a href="{{route('bye')}}">Cerrar sesión</a></li>
                         </ul>
                     </li>
@@ -44,9 +44,13 @@
             </div>
         </div>
     </nav>
-    <h1>Hola {{session('session_name')}} por favor elija una de las opciones mostradas a continuación</h1>
-    <a href="citasq">Ver citas quiropractica</a><br><br>
-    <a href="pacientes">Ver pacientes</a>
+    <h1>Tú información es la siguinete</h1>
+    <form>
+        <label>Nombre completo:</label><input type="text" value="{{session('session_name')}}" size="25" readonly><br><br>
+        <label>Usuario:</label><input type="text" value="{{session('session_usuario')}}" size="25" readonly><br><br>
+        <label>Correo:</label><input type="text" value="{{session('session_correo')}}" size="25" readonly><br><br>
+    </form>
+    
     @endif
 </body>
 

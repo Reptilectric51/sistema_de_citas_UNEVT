@@ -25,6 +25,10 @@ Route::name('index')->get('index/', function (){
     return view('templates.sesion_exitosa');
 });
 
+Route::name('misdatos')->get('misdatos/', function (){
+    return view('templatesadmin.misdatos');
+});
+
 //---------------------------------------------------Buscar cita-------------------------------------------------------------
 Route::name('buscarcita')->get('buscarcita/', function (){
     return view('templates.buscarmicita');
