@@ -51,6 +51,7 @@
         <input type="text" placeholder="Ingrese termino de busqueda" name="tb">
         <input type="submit" value="Buscar"><br><br>
     </form>
+    <input type="button" onclick="location.href='agendarcitaqa/';" value="Agendar nueva cita" />
     <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
         <thead>
             <tr>
