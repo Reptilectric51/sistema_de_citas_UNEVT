@@ -25,9 +25,12 @@ Route::name('index')->get('index/', function (){
     return view('templates.sesion_exitosa');
 });
 
-Route::name('agendarcitaqa')->get('agendarcitaqa/', function (){
-    return view('templatesadmin.agendarcitaq');
+//---------------------------------------------------Buscar cita-------------------------------------------------------------
+Route::name('buscarcita')->get('buscarcita/', function (){
+    return view('templates.buscarmicita');
 });
+Route::name('buscandocita')->post('buscandocita/', 'App\Http\Controllers\sistemcontroller@buscarcitas');
+Route::name('cancelarcita')->post('cancelarcita/', 'App\Http\Controllers\sistemcontroller@cancelarcita');
 
 //----------------------------------------------------Inicio de sesión-------------------------------------------------------
 Route::name('login')->post('login/', 'App\Http\Controllers\loginController@validar');
@@ -46,4 +49,6 @@ Route::name('pdfcitacq')->post('generandocomprobantecq/', 'App\Http\Controllers\
 Route::name('modificarcita')->post('modificarcita/', 'App\Http\Controllers\sistemcontroller@modificarcita');
 Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcontroller@salvarcita');
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
-
+Route::name('agendarcitaqa')->get('agendarcitaqa/', function (){
+    return view('templatesadmin.agendarcitaq');
+});

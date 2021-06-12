@@ -28,7 +28,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Citas <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Buscar mi cita</a></li>
+                            <li><a href="{{route('buscarcita')}}">Buscar mi cita</a></li>
                            <!-- <li><a href="#">Agendar cita</a></li>-->
                         </ul>
                     </li>

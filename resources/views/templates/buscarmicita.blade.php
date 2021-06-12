@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>Agendar cita quiropractica</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Buscar cita</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Citas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Buscar mi cita</a></li>
+                            <li><a href="{{route('buscarcita')}}">Buscar mi cita</a></li>
                             <!-- <li><a href="#">Agendar cita</a></li>-->
                         </ul>
                     </li>
@@ -39,37 +39,23 @@
             </div>
         </div>
     </nav>
-    <h1>Por favor llena el siguiente formulario con tus datos para agendar la cita en el área de quiropractica</h1>
-    <form action="{{route('guardarcitaqadmin')}}" method="POST">
+    <h1>Para poder buscar sus citas ingrese los siguientes datos</h1>
+    <form action="{{route('buscandocita')}}" method="POST">
         {{ csrf_field() }}
-        <label>Nombre(s)*:</label><input type="text" name="nombre" placeholder="ej: Kirby" required><br><br>
-        <label>Apellido paterno*:</label><input type="text" name="apellidop" placeholder="ej: Martinez"
+        <label>Nombre*: </label><input type="text" name="nombre" placeholder="ej: kirby" required><br><br>
+        <label>Apellido paterno*: </label><input type="text" name="apellidop" placeholder="ej: Martinez"
             required><br><br>
         <label>Apellido materno*:</label><input type="text" name="apellidom" placeholder="ej: Hernandez"
             required><br><br>
-        <label>Correo electronico*:</label><input type="text" name="correo" placeholder="ej mail@mail.com"
+        <label>Correo electrónico*:</label><input type="email" name="correo" placeholder="ej: mail@mail.com"
             required><br><br>
-        <label>Número celular*:</label><input type="tel" name="celular" pattern="[0-9]{10}"
+        <label>Número de telefono celular:</label><input type="tel" name="celular" pattern="[0-9]{10}"
             placeholder="Número de telefono a 10 digitos" maxlength="10" required><br><br>
-        <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}"
-            placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
-        <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac"><br><br>
-        <label>Consultorio*:</label><select name="consultorio" required>
-            <option selected value="">Elije una opción</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+        <label>Elija el área*:</label><select name="area" required>
+            <option value="">Elija una opción</option>
+            <option>Quiropractica</option>
         </select><br><br>
-        <label>Ingrese la fecha de su cita*:</label><input type="date" name="fecha" required><br><br>
-        <label>Hora*:</label><select name="hora" required>
-            <option selected value="">Elije una opción por favor</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-        </select><br><br>
-        <input type="submit" value="Agendar cita"> <input type="reset" value="Reiniciar formulario">
+        <input type="submit" value="Buscar mi cita">
     </form>
 </body>
 

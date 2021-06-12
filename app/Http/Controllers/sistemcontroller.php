@@ -10,8 +10,47 @@ use Illuminate\Support\Facades\DB;
 class sistemcontroller extends Controller
 {   
 
+//-------------------------------------------Buscar cita--------------------------------------//
+public function buscarcitas(Request $request)
+{
+    $nombre = strtoupper($request['nombre']);
+    $apellidop = strtoupper($request['apellidop']);
+    $apellidom = strtoupper($request['apellidom']);
+    $correo = ($request['correo']);
+    $celular = ($request['celular']);
+    $area = strtoupper($request['area']);
+    if($area == "QUIROPRACTICA"){
+        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE nombre='$nombre' AND apellido_paterno = '$apellidop' AND apellido_materno = '$apellidom'");
+        if(count($citas)==0){
+            echo '<script type="text/javascript">
+            alert("No se han encontrado citas por favor verifique sus datos");
+            window.location.href="buscarcita/";
+            </script>';
+        }else{
+            return view("templates.miscitas")
+        ->with(['citas' => $citas]);
+        }
+    }
+}
+
+public function cancelarcita(Request $request)
+{
+    $folio = $request['folio'];
+    $rest = substr($folio, 0, 1);
+    $id = $request['id'];
+    if($folio != "CANCELADO"){
+    if($rest == "Q"){
+        $actualizar = DB::update("UPDATE citas_quiropractica SET estatus = 'CANCELADA', folio = 'CANCELADO' WHERE id = '$id'");
+    }
+}else{
+    echo '<script language="javascript">alert("La cita ya fue cancelada"); window.history.back();</script>';
+}
+}
+
+
 //-------------------------------------------Pacientes----------------------------------------//
-    public function Pacientes(){
+    public function Pacientes()
+    {
         $pacientes = pacientes::all();
         return view("templates.pacientes")
         ->with(['pacientes' => $pacientes]);
@@ -114,12 +153,15 @@ class sistemcontroller extends Controller
 
     public function comprobantecqpdf(Request $request){
         $folio = $request['folio'];
+        if($folio != "CANCELADO"){
         $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-
-        /**/
         $pdf = app('dompdf.wrapper');
         $pdf ->loadView('templatespdf.comprobante_quiropracticapdf', ['cita' => $cita]);
         return $pdf->download('comprobante de mi cita.pdf');
+    }else{
+        echo '<script language="javascript">alert("No puedes generar el comprobante debido a que la cita ya esta cancelada"); window.history.back();</script>';
+    }
+        /**/
     }
 
     public function buscarcq(Request $request){
