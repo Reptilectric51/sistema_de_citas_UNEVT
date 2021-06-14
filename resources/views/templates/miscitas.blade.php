@@ -45,9 +45,6 @@
             <thead>
                 <tr>
                     <th>
-                        <h3>Id</h3>
-                    </th>
-                    <th>
                         <h3>Nombre</h3>
                     </th>
                     <th>
@@ -85,7 +82,6 @@
                     @foreach ($citas as $cita)
                 <tbody>
                     <tr>
-                        <td>{{$cita->id}}</td>
                         <td>{{$cita->nombre}}</td>
                         <td>{{$cita->apellido_paterno}}</td>
                         <td>{{$cita->apellido_materno}}</td>

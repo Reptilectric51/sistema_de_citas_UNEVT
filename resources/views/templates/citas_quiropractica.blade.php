@@ -52,12 +52,10 @@
         <input type="submit" value="Buscar"><br><br>
     </form>
     <input type="button" onclick="location.href='agendarcitaqa/';" value="Agendar nueva cita" />
-    <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
+    <div class="table-responsive">
+    <table class="table">
         <thead>
             <tr>
-                <th>
-                    <h3>Id</h3>
-                </th>
                 <th>
                     <h3>Nombre</h3>
                 </th>
@@ -96,7 +94,6 @@
                 @foreach ($citas as $cita)
             <tbody>
                 <tr>
-                    <td>{{$cita->id}}</td>
                     <td>{{$cita->nombre}}</td>
                     <td>{{$cita->apellido_paterno}}</td>
                     <td>{{$cita->apellido_materno}}</td>
@@ -124,7 +121,7 @@
     <div class="d-flex justify-content-center">
         {!! $citas->links() !!}
     </div>
-
+</div>
 </body>
 @endif
 </html>

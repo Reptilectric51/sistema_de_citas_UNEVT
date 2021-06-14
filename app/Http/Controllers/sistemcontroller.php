@@ -41,7 +41,8 @@ public function cancelarcita(Request $request)
     if($folio != "CANCELADO"){
     if($rest == "Q"){
         $actualizar = DB::update("UPDATE citas_quiropractica SET estatus = 'CANCELADA', folio = 'CANCELADO' WHERE id = '$id'");
-    }
+        echo '<script language="javascript">alert("La cita fue cancelada exitosamente"); window.history.back();</script>';
+}
 }else{
     echo '<script language="javascript">alert("La cita ya fue cancelada"); window.history.back();</script>';
 }
