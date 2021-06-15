@@ -11,7 +11,8 @@
     <title>Se muestran las citas de {{$cita->nombre}} {{$cita->apellido_paterno}}</title>
     @endforeach
 
-    <head>
+</head>
+    <body>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -41,7 +42,8 @@
                 </div>
             </div>
         </nav>
-        <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
+        <div class="table-responsive">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>
@@ -109,5 +111,7 @@
                 </tbody>
                 @endforeach
         </table>
+        </div>
+        </body>
 
 </html>

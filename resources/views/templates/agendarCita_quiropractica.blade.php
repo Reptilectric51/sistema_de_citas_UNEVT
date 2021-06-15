@@ -54,7 +54,7 @@
         <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}"
             placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
         <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac"><br><br>
-        <label>Consultorio*:</label><select name="consultorio" required>
+        <label>Consultorio*:</label><select name="consultorio">
             <option selected value="">Elije una opción</option>
             <option value="1">1</option>
             <option value="2">2</option>
