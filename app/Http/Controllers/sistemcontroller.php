@@ -8,6 +8,7 @@ use App\Models\pacientes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\mail;
 use App\Mail\OrdendeEnvio;
+use App\Mail\EnvioComprobante;
 
 class sistemcontroller extends Controller
 {   
@@ -120,6 +121,8 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
+                $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+                Mail::to($email)->send(new EnvioComprobante($data));
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
@@ -153,6 +156,8 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
+                $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+                Mail::to($email)->send(new EnvioComprobante($data));
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
@@ -272,6 +277,8 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
+                $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+                Mail::to($email)->send(new EnvioComprobante($data));
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 return view("templatesadmin.comprobante_quiropracticaad")
                 ->with(['cita' => $cita]);
@@ -305,6 +312,8 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
+                $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
+                Mail::to($email)->send(new EnvioComprobante($data));
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 return view("templatesadmin.comprobante_quiropracticaad")
                 ->with(['cita' => $cita]);
