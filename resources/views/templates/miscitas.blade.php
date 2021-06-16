@@ -104,6 +104,10 @@
                             {{ csrf_field() }}
                             <input type="text" name="folio" value="{{$cita->folio}}" hidden readonly>
                             <input type="text" name="id" value="{{$cita->id}}" hidden readonly>
+                            <input type="text" name="correo" value="{{$cita->email}}" hidden readonly>
+                            <input type="text" name="fecha" value="{{$cita->fecha}}" hidden readonly>
+                            <input type="text" name="hora" value="{{$cita->hora}}" hidden readonly>
+                            <input type="text" name="nombrec" value="{{$cita->nombre}} {{$cita->apellido_paterno}} {{$cita->apellido_materno}}" hidden readonly>
                             <input type="submit" value="Cancelar cita">
                         </form>
                         </td>

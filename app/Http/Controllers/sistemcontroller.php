@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\citas_quiropractica;
 use App\Models\pacientes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\mail;
+use App\Mail\OrdendeEnvio;
 
 class sistemcontroller extends Controller
 {   
@@ -38,14 +40,26 @@ public function cancelarcita(Request $request)
     $folio = $request['folio'];
     $rest = substr($folio, 0, 1);
     $id = $request['id'];
+    $nombrec = $request['nombrec'];
+    $mensaje = "Hola"." ".$nombrec;
+    $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
     if($folio != "CANCELADO"){
     if($rest == "Q"){
-        $actualizar = DB::update("UPDATE citas_quiropractica SET estatus = 'CANCELADA', folio = 'CANCELADO' WHERE id = '$id'");
+       $actualizar = DB::update("UPDATE citas_quiropractica SET estatus = 'CANCELADA', folio = 'CANCELADO' WHERE id = '$id'");
+        $data=array(
+            'asunto'=>'Confirmación de cancelación de cita',
+            'email'=>$request->correo,
+            'mensaje'=>$mensaje,
+            'mensaje2'=>$mensaje2,
+    );
+
+    Mail::to($request->correo)->send(new OrdendeEnvio($data));
+
         echo '<script language="javascript">alert("La cita fue cancelada exitosamente"); window.history.back();</script>';
 }
 }else{
     echo '<script language="javascript">alert("La cita ya fue cancelada"); window.history.back();</script>';
-}
+}/**/
 }
 
 
