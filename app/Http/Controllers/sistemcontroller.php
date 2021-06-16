@@ -210,11 +210,22 @@ public function cancelarcita(Request $request)
         $correo = $request['correo'];
         $estatus = strtoupper($request['estatus']);
         $folio = $request['folio'];
+        $nombrec = $nombre." ".$apellidop." ".$apellidom;
+        $mensaje = "Hola"." ".$nombrec;
+        $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
         if($estatus != "CANCELADA"){
-            $folio = $request['folio'];
+            $folio = $folio;
 
         }else{
+
             $folio = strtoupper("Cancelado");
+            $data=array(
+                'asunto'=>'Confirmación de cancelación de cita',
+                'email'=>$request->correo,
+                'mensaje'=>$mensaje,
+                'mensaje2'=>$mensaje2,
+            );
+            Mail::to($request->correo)->send(new OrdendeEnvio($data));
         }
         /**/ 
         $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folio' WHERE id = '$id'");
