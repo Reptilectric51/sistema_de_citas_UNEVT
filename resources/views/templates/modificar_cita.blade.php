@@ -17,14 +17,25 @@
     <label>Apellido materno: </label><input type="text" value="{{$cita->apellido_materno}}" name="apellidom"
         required><br><br>
     <label>Correo electrónico: </label><input type="text" value="{{$cita->email}}" name="correo" required><br><br>
-    <label>Consultorio: </label><input type="text" value="{{$cita->consultorio}}" name="consultorio" required
-        readonly><br><br>
+    <label>Consultorio: </label><select name="consultorio">
+            <option selected>{{$cita->consultorio}}</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br><br>
     <label>Estatus: </label><select name="estatus">
         <option>Activo</option>
         <option>Cancelada</option>
     </select><br><br>
-    <label>Fecha: </label><input type="date" value="{{$cita->fecha}}" name="fecha" required readonly><br><br>
-    <label>Hora: </label><input type="text" value="{{$cita->hora}}" name="hora" required readonly><br><br>
+    <label>Fecha: </label><input type="date" value="{{$cita->fecha}}" name="fecha" required><br><br>
+    <label>Hora: </label><select name="hora" required>
+            <option selected >{{$cita->hora}}</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+        </select><br><br>
     <label>Folio: </label><input type="text" value="{{$cita->folio}}" name="folio" required readonly><br><br>
     <input type="submit" value="Guardar"> 
     <input type="button" onclick="location.href='/citasq';" value="Cancelar" />
