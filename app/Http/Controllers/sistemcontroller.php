@@ -201,6 +201,7 @@ public function cancelarcita(Request $request)
     }
 
     public function salvarcita(Request $request){
+        date_default_timezone_set('America/Mexico_City');
         $id = $request['id'];
         $nombre = strtoupper($request['nombre']);
         $apellidop = strtoupper($request['apellidop']);
@@ -209,6 +210,8 @@ public function cancelarcita(Request $request)
         $estatus = strtoupper($request['estatus']);
         $folio = $request['folio'];
         $fecha = $request['fecha'];
+        $fechaactual = date("Y-m-d");
+        $añoactual = date("Y");
         list($año,$mes,$dia) = explode("-",$fecha);
         $hora = $request['hora'];
         list($horas,$minutos) = explode(":",$hora);
@@ -217,21 +220,46 @@ public function cancelarcita(Request $request)
         $nombrec = $nombre." ".$apellidop." ".$apellidom;
         $mensaje = "Hola"." ".$nombrec;
         $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
+        $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion' AND id = '$id'");
+        $citaexiste1 = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion'");
         if($estatus != "CANCELADA"){
-            if ($folio==$folion){
-                $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
-                echo'<script type="text/javascript">
-                alert("Cita actualizada");
-                window.location.href="citasq/";
-                </script>';
+            if ($fecha < $fechaactual ){
+                echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); history.go(-1);</script>';
+            }elseif($añoactual < $año){
+                echo '<script language="javascript">alert("No puede agendar una cita un año posterior al actual"); history.go(-1);</script>';
+            }elseif(count($citaexiste) == 1 && count($citaexiste1) == 0){
+                if ($folio==$folion){
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    echo'<script type="text/javascript">
+                    alert("Cita actualizada");
+                    window.location.href="citasq/";
+                    </script>';
+                }else{
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    echo'<script type="text/javascript">
+                    alert("Cita actualizada");
+                    window.location.href="citasq/";
+                    </script>';}
+            }elseif(count($citaexiste1)==0){
+                if ($folio==$folion){
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    echo'<script type="text/javascript">
+                    alert("Cita actualizada");
+                    window.location.href="citasq/";
+                    </script>';
+                }else{
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    echo'<script type="text/javascript">
+                    alert("Cita actualizada");
+                    window.location.href="citasq/";
+                    </script>';}
+                /**/
             }else{
-                $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
                 echo'<script type="text/javascript">
-                alert("Cita actualizada");
-                window.location.href="citasq/";
-                </script>';
+                    alert("El folio ya esta asignado a otra cita por favor vuelva a intentar");
+                    history.go(-1);
+                    </script>';
             }
-
         }else{
 
             $folio = strtoupper("Cancelado");
