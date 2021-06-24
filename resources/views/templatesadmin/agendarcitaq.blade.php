@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Agendar cita quiropractica</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-
-<body>
+@extends('layouts.header')
+@section('body')
 @if(empty(session('session_id')))
     <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=iniciarsesion/">
 @else
@@ -77,6 +66,4 @@
         <input type="submit" value="Agendar cita"> <input type="reset" value="Reiniciar formulario">
     </form>
     @endif
-</body>
-
-</html>
+@endsection

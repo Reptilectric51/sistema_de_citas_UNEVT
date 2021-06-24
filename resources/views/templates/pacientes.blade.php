@@ -1,13 +1,11 @@
-<head>
-    <title>Citas</title>
-</head>
-
-<body>
+@extends('layouts.header')
+@section('body')
     @if(empty(session('session_id')))
     <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=iniciarsesion/">
     @else
     <h1>Reporte de pacientes</h1>
-    <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
+    <div class="table-responsive">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -43,7 +41,6 @@
             </tbody>
             @endforeach
     </table>
+</div>
     @endif
-</body>
-
-</html>
+@endsection
