@@ -1,6 +1,5 @@
     @extends('layouts.header')
     @section('body')
-    @foreach ($citas as $cita)
         <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -71,8 +70,9 @@
                         </form>
                         </td>
                     </tr>
-                </tbody>
-                @endforeach
+                    @endforeach
+                </tbody>     
         </table>
+        
         </div>
 @endsection
