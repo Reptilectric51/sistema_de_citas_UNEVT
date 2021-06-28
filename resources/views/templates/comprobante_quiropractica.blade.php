@@ -12,7 +12,7 @@
         <label>Hora: </label><label>{{$citas->hora}}</label><br>
         <label>Folio: </label> <label>{{$citas->folio}}</label><br>
         <div class="Código QR">
-        {!!QrCode::size(300)->generate("{$citas->folio}") !!}
+        {!!QrCode::size(300)->generate("Nombre: {$citas->nombre} {$citas->apellido_paterno} {$citas->apellido_materno}, Folio: {$citas->folio}, Consultorio: {$citas->consultorio}, Fecha: {$citas->fecha}, Hora: {$citas->hora}") !!}
         </div>
         <form action="{{route('pdfcitacq')}}" method="POST">
             {{ csrf_field() }}

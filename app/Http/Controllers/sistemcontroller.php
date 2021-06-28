@@ -103,10 +103,8 @@ public function cancelarcita(Request $request)
         $nombre_completo = $nombre." ".$apellidop." ".$apellidopm;
         $pacienteexiste = DB::select("SELECT * FROM pacientes WHERE nombre_completo = '$nombre_completo'");
         if(count($pacienteexiste) == 1){
-            if ($fecha < $fechaactual ){
-                echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); window.location.href="agendarcitaq/";</script>';
-            }elseif ($añoactual < $año){
-                        echo '<script language="javascript">alert("No puedes agendar una cita con un año superior al actual"); window.location.href="agendarcitaq/";</script>';
+        if ($fecha < $fechaactual || $añoactual < $año){
+                        echo '<script language="javascript">alert("Fecha invalida intentalo de nuevo"); history.go(-1);</script>';
                     }else{
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
@@ -121,8 +119,9 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
+                if($email != ""){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-                Mail::to($email)->send(new EnvioComprobante($data));
+                Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
@@ -131,10 +130,8 @@ public function cancelarcita(Request $request)
             }
                     }
         }else{
-            if ($fecha < $fechaactual ){
-                echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); window.location.href="agendarcitaq/";</script>';
-            }elseif ($añoactual < $año){
-                        echo '<script language="javascript">alert("No puedes agendar una cita con un año superior al actual"); window.location.href="agendarcitaq/";</script>';
+        if ($añoactual < $año || $fecha < $fechaactual){
+                        echo '<script language="javascript">alert("Fecha invalida intentelo de nuevo"); history.go(-1);</script>';
                     }else{
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
@@ -156,8 +153,9 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
+                if ($email != ""){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-                Mail::to($email)->send(new EnvioComprobante($data));
+                Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
