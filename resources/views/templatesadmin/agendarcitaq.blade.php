@@ -11,8 +11,7 @@
             required><br><br>
         <label>Apellido materno*:</label><input type="text" name="apellidom" placeholder="ej: Hernandez"
             required><br><br>
-        <label>Correo electronico*:</label><input type="text" name="correo" placeholder="ej mail@mail.com"
-            required><br><br>
+        <label>Correo electronico*:</label><input type="mail" name="correo" placeholder="ej mail@mail.com"><br><br>
         <label>Número celular*:</label><input type="tel" name="celular" pattern="[0-9]{10}"
             placeholder="Número de telefono a 10 digitos" maxlength="10" required><br><br>
         <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}"
