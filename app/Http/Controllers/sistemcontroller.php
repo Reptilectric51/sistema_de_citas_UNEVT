@@ -76,7 +76,7 @@ public function cancelarcita(Request $request)
 //-------------------------------------------Quiropractica------------------------------------//
     public function citas_quiropractica()
     {
-        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(10);
+        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(8);
         return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
@@ -323,7 +323,7 @@ public function cancelarcita(Request $request)
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-                return view("templatesadmin.comprobante_quiropracticaad")
+                return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
             }else{
                 echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
@@ -357,7 +357,7 @@ public function cancelarcita(Request $request)
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
-                return view("templatesadmin.comprobante_quiropracticaad")
+                return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
             }else{
                 echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';

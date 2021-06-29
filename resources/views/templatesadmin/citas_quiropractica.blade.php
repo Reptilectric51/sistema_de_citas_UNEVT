@@ -58,7 +58,7 @@
                 </th>
             </tr>
             @endif
-            <thead>
+</thead>
                 @foreach ($citas as $cita)
             <tbody>
                 <tr>

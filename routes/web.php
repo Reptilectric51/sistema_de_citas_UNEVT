@@ -50,3 +50,10 @@ Route::name('pdfcitacq')->post('generandocomprobantecq/', 'App\Http\Controllers\
 Route::name('modificarcita')->post('modificarcita/', 'App\Http\Controllers\sistemcontroller@modificarcita');
 Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcontroller@salvarcita');
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
+
+
+//----------------------------------------------------Pruebas-----------------------------------------------------------------
+Route::name('prueba')->get('prueba/', function (){
+    return view('pruebas.fecha');
+});
+Route::name('horas')->post('horas/', 'App\Http\Controllers\pruebas@prueba');

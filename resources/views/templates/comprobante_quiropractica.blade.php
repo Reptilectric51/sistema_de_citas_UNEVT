@@ -21,10 +21,16 @@
             </select>
             <input type="submit" value="Descargar mi comprobante en formato pdf">
         </form><br><br>
+        @endforeach
+        @if(empty(session('session_id')))
         <form action="/" method="GET">
             <input type="submit" value="Regresar al inicio">
         </form>
-        @endforeach
+        @else
+        <form action="/citasq" method="GET">
+            <input type="submit" value="Regresar a las citas">
+        </form>
+        @endif
         <p>Lo esperamos en la fecha marcada en su cita guarde este comprobante para recibir la atención</p>
     </body>
 </html>
