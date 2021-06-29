@@ -69,7 +69,7 @@ public function cancelarcita(Request $request)
     public function Pacientes()
     {
         $pacientes = pacientes::all();
-        return view("templates.pacientes")
+        return view("templatesadmin.pacientes")
         ->with(['pacientes' => $pacientes]);
     }
 
@@ -77,7 +77,7 @@ public function cancelarcita(Request $request)
     public function citas_quiropractica()
     {
         $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(10);
-        return view("templates.citas_quiropractica")
+        return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
     public function agendar_cita_quiropractica()
@@ -185,11 +185,11 @@ public function cancelarcita(Request $request)
         $termb = $request['tb'];
         $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
         if($termb != ""){
-        return view("templates.citas_quiropractica")
+        return view("templatesadmin.citas_quiropractica")
             ->with(['citas' => $citas])
             ->with(['termb' =>$termb]);
         }else{
-            return view("templates.citas_quiropractica")
+            return view("templatesadmin.citas_quiropractica")
             ->with(['citas' => $citas]);
         }
     }
@@ -198,7 +198,7 @@ public function cancelarcita(Request $request)
         $id = $request['id'];
         $cestatus = $request['estatus'];
         $citas = DB::select("SELECT * FROM citas_quiropractica WHERE id = '$id'");
-        return view("templates.modificar_cita")
+        return view("templatesadmin.modificar_cita")
         ->with(['citas' => $citas]);
         /**/ 
     }
