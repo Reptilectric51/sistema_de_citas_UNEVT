@@ -7,10 +7,14 @@
     <h1>Reporte de citas de área de quiropráctica</h1>
     <form action="{{route('buscarcq')}}" method="POST">
         {{ csrf_field() }}
+        @if(empty($termb))
         <input type="text" placeholder="Ingrese termino de busqueda" name="tb">
+        @else
+        <input type="text" placeholder="Ingrese termino de busqueda" name="tb" value="{{$termb}}">
+        @endif
         <input type="submit" value="Buscar"><br><br>
     </form>
-    <input type="button" onclick="location.href='{{route('agendarcitaqa')}}';" value="Agendar nueva cita" />
+    <input type="button" onclick="location.href='{{route('agendarcitaqa')}}';" value="Agendar nueva cita" /><br>
     <div class="table-responsive">
     <table class="table">
         <thead>
@@ -89,5 +93,9 @@
         {!! $citas->links() !!}
     </div>
 </div>
+@if(empty($termb))
+    @else
+    <label align="center">Se muestran los resultados para {{$termb}}</label>
+    @endif
 @endif
 @endsection

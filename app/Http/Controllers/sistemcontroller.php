@@ -165,8 +165,6 @@ public function cancelarcita(Request $request)
             }
                     }
         }
-        /*
-       /*
     /**/ 
     }
 
@@ -185,9 +183,15 @@ public function cancelarcita(Request $request)
 
     public function buscarcq(Request $request){
         $termb = $request['tb'];
-        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
+        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
+        if($termb != ""){
         return view("templates.citas_quiropractica")
+            ->with(['citas' => $citas])
+            ->with(['termb' =>$termb]);
+        }else{
+            return view("templates.citas_quiropractica")
             ->with(['citas' => $citas]);
+        }
     }
 
     public function modificarcita(Request $request){
@@ -360,8 +364,6 @@ public function cancelarcita(Request $request)
             }
                     }
         }
-        /*
-       /*
     /**/ 
     }
 
