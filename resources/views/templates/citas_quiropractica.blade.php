@@ -14,7 +14,7 @@
         @endif
         <input type="submit" value="Buscar"><br><br>
     </form>
-    <input type="button" onclick="location.href='{{route('agendarcitaqa')}}';" value="Agendar nueva cita" /><br>
+    <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" /><br>
     <div class="table-responsive">
     <table class="table">
         <thead>

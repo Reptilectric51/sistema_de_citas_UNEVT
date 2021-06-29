@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::name('index')->get('/', function () {
     return view('templates.index');
 });
 
@@ -21,9 +21,6 @@ Route::get('iniciarsesion/', function () {
     return view('templates.iniciar_sesion');
 });
 
-Route::name('index')->get('index/', function (){
-    return view('templates.sesion_exitosa');
-});
 
 Route::name('misdatos')->get('misdatos/', function (){
     return view('templatesadmin.misdatos');
@@ -53,6 +50,3 @@ Route::name('pdfcitacq')->post('generandocomprobantecq/', 'App\Http\Controllers\
 Route::name('modificarcita')->post('modificarcita/', 'App\Http\Controllers\sistemcontroller@modificarcita');
 Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcontroller@salvarcita');
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
-Route::name('agendarcitaqa')->get('agendarcitaqa/', function (){
-    return view('templatesadmin.agendarcitaq');
-});

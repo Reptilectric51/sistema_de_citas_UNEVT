@@ -30,7 +30,7 @@ class loginController extends Controller
             $session_correo = $request->session()->get('session_correo');
             $session_usuario = $request->session()->get('session_usuario');
             $session_tipo = $request->session()->get('session_tipo');
-            return view('templates.sesion_exitosa')
+            return view('templates.index')
             ->with($nombre = $session_name);/**/
         }
     }
