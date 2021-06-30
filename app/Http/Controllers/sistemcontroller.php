@@ -110,9 +110,7 @@ public function cancelarcita(Request $request)
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
                 $citas = citas_quiropractica::create(array(
-                    'nombre'=> strtoupper($request->input('nombre')),
-                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
-                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'nombre_completo'=> strtoupper($nombre_completo),
                     'email'=>($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
@@ -144,9 +142,7 @@ public function cancelarcita(Request $request)
                     'email'=>($email),
                 ));
                 $citas = citas_quiropractica::create(array(
-                    'nombre'=> strtoupper($request->input('nombre')),
-                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
-                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'nombre'=> strtoupper($nombre_completo),
                     'email'=> ($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
@@ -183,7 +179,7 @@ public function cancelarcita(Request $request)
 
     public function buscarcq(Request $request){
         $termb = $request['tb'];
-        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
+        $citas = citas_quiropractica::where("nombre_completo", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
         if($termb != ""){
         return view("templatesadmin.citas_quiropractica")
             ->with(['citas' => $citas])
@@ -226,32 +222,30 @@ public function cancelarcita(Request $request)
         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion' AND id = '$id'");
         $citaexiste1 = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion'");
         if($estatus != "CANCELADA"){
-            if ($fecha < $fechaactual ){
-                echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); history.go(-1);</script>';
-            }elseif($añoactual < $año){
-                echo '<script language="javascript">alert("No puede agendar una cita un año posterior al actual"); history.go(-1);</script>';
+            if($añoactual < $año || $fecha < $fechaactual){
+                echo '<script language="javascript">alert("Fecha invalida intentelo otra vez"); history.go(-1);</script>';
             }elseif(count($citaexiste) == 1 && count($citaexiste1) == 0){
                 if ($folio==$folion){
-                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre_completo = '$nombre',  email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
                     echo'<script type="text/javascript">
                     alert("Cita actualizada");
                     window.location.href="citasq/";
                     </script>';
                 }else{
-                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre_completo = '$nombre', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
                     echo'<script type="text/javascript">
                     alert("Cita actualizada");
                     window.location.href="citasq/";
                     </script>';}
             }elseif(count($citaexiste1)==0){
                 if ($folio==$folion){
-                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre_completo = '$nombre', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
                     echo'<script type="text/javascript">
                     alert("Cita actualizada");
                     window.location.href="citasq/";
                     </script>';
                 }else{
-                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
+                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre_completo = '$nombre', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
                     echo'<script type="text/javascript">
                     alert("Cita actualizada");
                     window.location.href="citasq/";
@@ -266,7 +260,7 @@ public function cancelarcita(Request $request)
         }else{
 
             $folio = strtoupper("Cancelado");
-            $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folio' WHERE id = '$id'");
+            $actualizar = DB::update("UPDATE citas_quiropractica SET nombre_completo = '$nombre', email = '$correo', estatus = '$estatus', folio = '$folio' WHERE id = '$id'");
             if($correo != ""){
             $data=array(
                 'asunto'=>'Confirmación de cancelación de cita',
@@ -309,9 +303,7 @@ public function cancelarcita(Request $request)
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
                 $citas = citas_quiropractica::create(array(
-                    'nombre'=> strtoupper($request->input('nombre')),
-                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
-                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'nombre_completo'=> strtoupper($nombre_completo),
                     'email'=>($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
@@ -343,9 +335,7 @@ public function cancelarcita(Request $request)
                     'email'=>($email),
                 ));
                 $citas = citas_quiropractica::create(array(
-                    'nombre'=> strtoupper($request->input('nombre')),
-                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
-                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'nombre_completo'=> strtoupper($nombre_completo),
                     'email'=> ($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
