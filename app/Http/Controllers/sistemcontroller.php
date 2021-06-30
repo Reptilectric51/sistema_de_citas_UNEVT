@@ -64,7 +64,12 @@ public function cancelarcita(Request $request)
 }/**/
 }
 
-
+//-------------------------------------------Fechas ocupadas------------------------------------//
+    public function fechas_ocupadas()
+    {
+        $fechas_ocupadas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->get();
+        return $fechas_ocupadas;
+    }
 //-------------------------------------------Pacientes----------------------------------------//
     public function Pacientes()
     {
