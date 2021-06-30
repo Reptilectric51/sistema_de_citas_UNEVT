@@ -100,6 +100,9 @@ public function cancelarcita(Request $request)
         $folio = "Q".$consultorio."-".$dia.$mes.$horas;
         $estatus = "Activo";
         $email = $request['correo'];
+        if($email == ""){
+            $email = "N/A"; 
+        }
         $fechaactual = date("Y-m-d");
         $mesactual = date("m");
         $añoactual = date("Y");
@@ -125,7 +128,7 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
-                if($email != ""){
+                if($email != "N/A"){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
@@ -159,7 +162,7 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
-                if ($email != ""){
+                if ($email != "N/A"){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
@@ -299,6 +302,9 @@ public function cancelarcita(Request $request)
         $folio = "Q".$consultorio."-".$dia.$mes.$horas;
         $estatus = "Activo";
         $email = $request['correo'];
+        if($email == ""){
+            $email = "N/A";
+        }
         $fechaactual = date("Y-m-d");
         $mesactual = date("m");
         $añoactual = date("Y");
@@ -324,7 +330,7 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
-                if($email != ""){
+                if($email != "N/A"){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
@@ -358,7 +364,7 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
-                if($email != ""){
+                if($email != "N/A"){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
