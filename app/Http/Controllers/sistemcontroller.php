@@ -61,7 +61,7 @@ public function cancelarcita(Request $request)
 }
 }else{
     echo '<script language="javascript">alert("La cita ya fue cancelada"); window.history.back();</script>';
-}/**/
+}
 }
 
 //-------------------------------------------Fechas ocupadas------------------------------------//
@@ -382,7 +382,7 @@ public function cancelarcita(Request $request)
         if($termb == ""){
         $citas = citas_quiropractica::all();
         $pdf = app('dompdf.wrapper');
-        $pdf ->loadView('templatespdf.citas_quiropracticapdf', ['citas' => $citas]);
+        $pdf ->loadView('templatespdf.citas_quiropracticapdf', ['citas' => $citas])->setPaper('a4', 'landscape');
         return $pdf->download('comprobante de mi cita.pdf');
         }else{
         $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);

@@ -40,6 +40,11 @@ Route::name('bye')->get('bye/', 'App\Http\Controllers\loginController@logout');
 //----------------------------------------------------Pacientes--------------------------------------------------------------
 Route::name('pacientes')->get('pacientes/', 'App\Http\Controllers\sistemcontroller@Pacientes');
 
+//----------------------------------------------------Datos-------------------------------------------------------------------
+Route::name('modificardatos')->get('modificardatos/', function (){
+    return view('templatesadmin.modificarmisdatos');
+});
+Route::name('guardarmisdatos')->post('guardarmisdatos/', 'App\Http\Controllers\modificacionesadminController@modificardatosadmin');
 
 //----------------------------------------------------citas quiropractica----------------------------------------------------
 Route::name('citasq')->get('citasq/', 'App\Http\Controllers\sistemcontroller@citas_quiropractica');

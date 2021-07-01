@@ -133,7 +133,7 @@
         {{ csrf_field() }}
         <label>Ingrese sus credenciales para iniciar sesión</label><br>
         <input type="text" placeholder="Usuario o correo" required name="usuario" />
-        <input type="password" placeholder="contraseña" required name="contraseña" />
+        <input type="password" placeholder="contraseña" minlength="8" required name="contraseña" />
         <button>Iniciar sesión</button>
         <input type="button" onclick="location.href='/';" value="Regresar al inicio" />
       </form>

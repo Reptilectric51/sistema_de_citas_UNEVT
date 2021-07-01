@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <title>Modificar cita</title>
 </head>
@@ -10,7 +9,7 @@
 <form action="{{route('salvar_cita')}}" method="POST">
     {{ csrf_field() }}
     <h3>Aquí puede modificar la cita de {{$cita->nombre}}</h3>
-    <label>ID: </label><input type="text" value="{{$cita->id}}" name="id" readonly><br><br>
+    <input type="text" value="{{$cita->id}}" name="id" readonly hidden>
     <label>Nombre: </label><input type="text" value="{{$cita->nombre}}" name="nombre" required><br><br>
     <label>Apellido paterno: </label><input type="text" value="{{$cita->apellido_paterno}}" name="apellidop"
         required><br><br>
