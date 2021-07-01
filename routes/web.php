@@ -51,10 +51,4 @@ Route::name('modificarcita')->post('modificarcita/', 'App\Http\Controllers\siste
 Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcontroller@salvarcita');
 Route::name('fechas_ocupadas')->post('fechas_ocupadas/', 'App\Http\Controllers\sistemcontroller@fechas_ocupadas');
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
-
-
-//----------------------------------------------------Pruebas-----------------------------------------------------------------
-Route::name('prueba')->get('prueba/', function (){
-    return view('pruebas.fecha');
-});
-Route::name('horas')->post('horas/', 'App\Http\Controllers\pruebas@prueba');
+Route::name('comprobantecitasqpdf')->post('comprobantecitasqpdf/', 'App\Http\Controllers\sistemcontroller@comprobantecitasqpdf');

@@ -1,6 +1,10 @@
-    <h1>Reporte de citas de área de quiropráctica</h1>
-    <div class="table-responsive">
-    <table class="table">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comprobante de cita</title>
+    </head>
+    <body>
+    <table>
         <thead>
             <tr>
                 <th>
@@ -30,12 +34,7 @@
                 <th>
                     <h3>Actualizado</h3>
                 </th>                
-                @if(session('session_tipo') == 1)
-                <th>
-                    <h3>Opciones</h3>
-                </th>
             </tr>
-            @endif
 </thead>
                 @foreach ($citas as $cita)
             <tbody>
@@ -49,18 +48,10 @@
                     <td>{{$cita->folio}}</td>
                     <td>{{$cita->created_at}}</td>
                     <td>{{$cita->updated_at}}</td>
-                    @if(session('session_tipo') == 1)
-                    <form action="{{route('modificarcita')}}" method="POST">
-                        {{ csrf_field() }}
-                        <td><select hidden name="id">
-                                <option selected>{{$cita->id}}</option>
-                            </select>
-                            <input type="text" name="estatus" value="{{$cita->estatus}}" hidden readonly>
-                            <input type="submit" value="Modificar cita">
-                        </td>
                     </form>
-                    @endif
                 </tr>
             </tbody>
             @endforeach
     </table>
+</body>
+<html>

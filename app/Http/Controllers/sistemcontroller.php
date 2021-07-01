@@ -377,5 +377,19 @@ public function cancelarcita(Request $request)
         }
     /**/ 
     }
+    public function comprobantecitasqpdf(Request $request){
+        $termb = $request['tb1'];
+        if($termb == ""){
+        $citas = citas_quiropractica::all();
+        $pdf = app('dompdf.wrapper');
+        $pdf ->loadView('templatespdf.citas_quiropracticapdf', ['citas' => $citas]);
+        return $pdf->download('comprobante de mi cita.pdf');
+        }else{
+        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
+        $pdf = app('dompdf.wrapper');
+        $pdf ->loadView('templatespdf.citas_quiropracticapdf', ['citas' => $citas]);
+        return $pdf->download('comprobante de mi cita.pdf');
+        }
+    }
 
 }
