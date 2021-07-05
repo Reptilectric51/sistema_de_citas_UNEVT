@@ -16,6 +16,7 @@ class Pacientes extends Migration
         Schema::create('pacientes', function (Blueprint $table) {
         $table->id();
         $table->string('nombre_completo');
+        $table->string('genero');
         $table->string('numero_movil');
         $table->string('numero_fijo')->nullable();
         $table->string('lugar_de_procedencia');

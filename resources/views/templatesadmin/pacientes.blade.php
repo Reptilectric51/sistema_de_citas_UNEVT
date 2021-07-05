@@ -15,6 +15,9 @@
                     <h3>Nombre</h3>
                 </th>
                 <th>
+                    <h3>Género</h3>
+                </th>
+                <th>
                     <h3>Número de celular</h3>
                 </th>
                 <th>
@@ -33,6 +36,7 @@
                 <tr>
                     <td>{{$paciente->id}}</td>
                     <td>{{$paciente->nombre_completo}}</td>
+                    <td>{{$paciente->genero}}</td>
                     <td>{{$paciente->numero_movil}}</td>
                     <td>{{$paciente->numero_fijo}}</td>
                     <td>{{$paciente->lugar_de_procedencia}}</td>

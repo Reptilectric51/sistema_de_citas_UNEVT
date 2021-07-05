@@ -50,14 +50,16 @@ public function cancelarcita(Request $request)
        $actualizar = DB::update("UPDATE citas_quiropractica SET estatus = 'CANCELADA', folio = 'CANCELADO' WHERE id = '$id'");
         $data=array(
             'asunto'=>'Confirmación de cancelación de cita',
-            'email'=>$request->correo,
+            'email'=>$email,
             'mensaje'=>$mensaje,
             'mensaje2'=>$mensaje2,
     );
-
-    Mail::to($request->correo)->send(new OrdendeEnvio($data));
-
+    if($email != "N/A"){
+        Mail::to($request->correo)->send(new OrdendeEnvio($data));
         echo '<script language="javascript">alert("La cita fue cancelada exitosamente"); window.history.back();</script>';
+    }else{
+        echo '<script language="javascript">alert("La cita fue cancelada exitosamente"); window.history.back();</script>';
+    }
 }
 }else{
     echo '<script language="javascript">alert("La cita ya fue cancelada"); window.history.back();</script>';
@@ -91,6 +93,7 @@ public function cancelarcita(Request $request)
     }
     public function guardar_cita_quiropractica(Request $request)
     {
+        $genero = $request['genero'];
         date_default_timezone_set('America/Mexico_City');
         $consultorio = $request['consultorio'];
         $fecha = $request['fecha'];
@@ -146,6 +149,7 @@ public function cancelarcita(Request $request)
             if (count($citaexiste) == 0){
                 $paciente = pacientes::create(array(
                     'nombre_completo'=>strtoupper($nombre_completo),
+                    'genero'=>strtoupper($request['genero']),
                     'numero_movil'=>$request['celular'],
                     'numero_fijo'=>$request['telefono'],
                     'lugar_de_procedencia'=>strtoupper($request['procedencia']),
@@ -233,12 +237,13 @@ public function cancelarcita(Request $request)
         $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion' AND id = '$id'");
         $citaexiste1 = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion'");
+        $email = $request['corre'];
         if($estatus != "CANCELADA"){
             if ($fecha < $fechaactual ){
                 echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); history.go(-1);</script>';
             }elseif($añoactual < $año){
                 echo '<script language="javascript">alert("No puede agendar una cita un año posterior al actual"); history.go(-1);</script>';
-            }elseif(count($citaexiste) == 1 && count($citaexiste1) == 0){
+            }elseif((count($citaexiste) == 1 && count($citaexiste1) == 0) || (count($citaexiste) == 1 && count($citaexiste1) == 1) || (count($citaexiste) == 0 && count($citaexiste1) == 0)){
                 if ($folio==$folion){
                     $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
                     echo'<script type="text/javascript">
@@ -250,21 +255,8 @@ public function cancelarcita(Request $request)
                     echo'<script type="text/javascript">
                     alert("Cita actualizada");
                     window.location.href="citasq/";
-                    </script>';}
-            }elseif(count($citaexiste1)==0){
-                if ($folio==$folion){
-                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
-                    echo'<script type="text/javascript">
-                    alert("Cita actualizada");
-                    window.location.href="citasq/";
                     </script>';
-                }else{
-                    $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folion', consultorio ='$consultorio', fecha = '$fecha', hora = '$hora' WHERE id = '$id'");
-                    echo'<script type="text/javascript">
-                    alert("Cita actualizada");
-                    window.location.href="citasq/";
-                    </script>';}
-                /**/
+                }
             }else{
                 echo'<script type="text/javascript">
                     alert("El folio ya esta asignado a otra cita por favor vuelva a intentar");
@@ -275,24 +267,30 @@ public function cancelarcita(Request $request)
 
             $folio = strtoupper("Cancelado");
             $actualizar = DB::update("UPDATE citas_quiropractica SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', email = '$correo', estatus = '$estatus', folio = '$folio' WHERE id = '$id'");
-            if($correo != ""){
+            if($correo != "N/A"){
             $data=array(
                 'asunto'=>'Confirmación de cancelación de cita',
                 'email'=>$request->correo,
                 'mensaje'=>$mensaje,
                 'mensaje2'=>$mensaje2,
             );
-            Mail::to($request->correo)->send(new OrdendeEnvio($data));
-            }
             echo'<script type="text/javascript">
             alert("Cita cancelada");
             window.location.href="citasq/";
             </script>';
+            Mail::to($request->correo)->send(new OrdendeEnvio($data));
+            }else{
+                echo'<script type="text/javascript">
+            alert("Cita cancelada");
+            window.location.href="citasq/";
+            </script>';
+            }
         } 
         /**/
     }
     public function guardar_cita_quiropracticad(Request $request)
     {
+        $genero = $request['genero'];
         date_default_timezone_set('America/Mexico_City');
         $consultorio = $request['consultorio'];
         $fecha = $request['fecha'];
@@ -348,6 +346,7 @@ public function cancelarcita(Request $request)
             if (count($citaexiste) == 0){
                 $paciente = pacientes::create(array(
                     'nombre_completo'=>strtoupper($nombre_completo),
+                    'genero'=>strtoupper($genero),
                     'numero_movil'=>$request['celular'],
                     'numero_fijo'=>$request['telefono'],
                     'lugar_de_procedencia'=>strtoupper($request['procedencia']),
@@ -387,7 +386,7 @@ public function cancelarcita(Request $request)
         }else{
         $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
         $pdf = app('dompdf.wrapper');
-        $pdf ->loadView('templatespdf.citas_quiropracticapdf', ['citas' => $citas]);
+        $pdf ->loadView('templatespdf.citas_quiropracticapdf', ['citas' => $citas])->setPaper('a4', 'landscape');
         return $pdf->download('comprobante de mi cita.pdf');
         }
     }

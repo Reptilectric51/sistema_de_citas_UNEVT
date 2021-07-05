@@ -13,6 +13,9 @@
             required><br><br>
         <label>Apellido materno*:</label><input type="text" name="apellidom" placeholder="ej: Hernandez"
             required><br><br>
+        <p>Por favor seleccione un genero</p>
+        <input type="radio" id="Masculino" value="Masculino" name="genero"><label>Masculino</label>    
+        <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
         <label>Correo electronico*:</label><input type="mail" name="correo" placeholder="ej mail@mail.com"
             ><br><br>
         <label>Número celular*:</label><input type="tel" name="celular" pattern="[0-9]{10}"
@@ -66,7 +69,7 @@ function fechas_ocupadas(fecha,consultorio) {
         });
         $.ajax({
             type: 'POST',
-            url: '{{route('fechas_ocupadas')}}',
+            url: "{{route('fechas_ocupadas')}}",
             dataType:"json",
             data: { val: 1 },
             success: function (data) {

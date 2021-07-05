@@ -19,11 +19,12 @@
         @if(empty($termb))
         <input type="text" value="" name="tb1" hidden>
         <input type="submit" value="Descargar formato pdf">
-        <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" /><br>
+        <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" />
+        <input type="button" onclick="location.href='{{route('reportesexcelcitas')}}';" value="Descargar reportes excel" />
         @else
         <input type="text" value="{{$termb}}" name="tb1" hidden>
         <input type="submit" value="Descargar formato pdf">
-        <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" /><br>
+        <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" />
         @endif
     </form>
     <div class="table-responsive">

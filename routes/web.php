@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Exports\CitasExport;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,8 @@ Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcont
 Route::name('fechas_ocupadas')->post('fechas_ocupadas/', 'App\Http\Controllers\sistemcontroller@fechas_ocupadas');
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
 Route::name('comprobantecitasqpdf')->post('comprobantecitasqpdf/', 'App\Http\Controllers\sistemcontroller@comprobantecitasqpdf');
+
+//------------------------------------------------------Reportes---------------------------------------------------------------
+Route::name('reportesexcelcitas')->get('/reportesexcelcitas', function () {
+    return Excel::download(new CitasExport, 'citas.xlsx');
+});
