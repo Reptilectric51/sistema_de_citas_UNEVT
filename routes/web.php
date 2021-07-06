@@ -58,6 +58,10 @@ Route::name('salvar_cita')->post('salvarcita/', 'App\Http\Controllers\sistemcont
 Route::name('fechas_ocupadas')->post('fechas_ocupadas/', 'App\Http\Controllers\sistemcontroller@fechas_ocupadas');
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
 Route::name('comprobantecitasqpdf')->post('comprobantecitasqpdf/', 'App\Http\Controllers\sistemcontroller@comprobantecitasqpdf');
+Route::name('buscarusuario')->get('buscarusuario/', function (){
+    return view('templates.buscar_paciente');
+});
+Route::name('buscardatospaciente')->post('buscardatospaciente/', 'App\Http\Controllers\sistemcontroller@buscar_usuario');
 
 //------------------------------------------------------Reportes---------------------------------------------------------------
 Route::name('reportesexcelcitas')->get('/reportesexcelcitas', function () {

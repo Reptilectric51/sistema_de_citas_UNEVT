@@ -19,12 +19,12 @@
         @if(empty($termb))
         <input type="text" value="" name="tb1" hidden>
         <input type="submit" value="Descargar formato pdf">
-        <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" />
+        <input type="button" onclick="location.href='{{route('buscarusuario')}}';" value="Agendar nueva cita" />
         <input type="button" onclick="location.href='{{route('reportesexcelcitas')}}';" value="Descargar reportes excel" />
         @else
         <input type="text" value="{{$termb}}" name="tb1" hidden>
         <input type="submit" value="Descargar formato pdf">
-        <input type="button" onclick="location.href='{{route('agendarCitaq')}}';" value="Agendar nueva cita" />
+        <input type="button" onclick="location.href='{{route('buscarusuario')}}';" value="Agendar nueva cita" />
         @endif
     </form>
     <div class="table-responsive">
@@ -33,6 +33,9 @@
             <tr>
                 <th>
                     <h3>Nombre completo</h3>
+                </th>
+                <th>
+                    <h3>CURP</h3>
                 </th>
                 <th>
                     <h3>Email</h3>
@@ -69,6 +72,7 @@
             <tbody>
                 <tr>
                     <td>{{$cita->nombre}} {{$cita->apellido_paterno}} {{$cita->apellido_materno}}</td>
+                    <td>{{$cita->CURP}}</td>
                     <td>{{$cita->email}}</td>
                     <td>{{$cita->consultorio}}</td>
                     <td>{{$cita->estatus}}</td>

@@ -8,19 +8,72 @@
         <form action="{{route('guardarcitaqadmin')}}" method="POST">
             @endif
         {{ csrf_field() }}
+        @if($existe == "")
+        @foreach($paciente as $pacien)
+        <label>Nombre(s)*:</label><input type="text" name="nombre" placeholder="ej: Kirby" value="{{$pacien->nombre}}" required><br><br>
+        <label>Apellido paterno*:</label><input type="text" name="apellidop" value="{{$pacien->apellido_paterno}}" placeholder="ej: Martinez"
+            required><br><br>
+        <label>Apellido materno*:</label><input type="text" name="apellidom" value="{{$pacien->apellido_materno}}" placeholder="ej: Hernandez"
+            required><br><br>
+        <p>Por favor seleccione un genero</p>
+        @if($pacien->genero == "MASCULINO")
+        <input type="radio" id="Masculino" value="Masculino" checked name="genero"><label>Masculino</label>    
+        <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
+        @elseif($pacien->genero == "FEMENINO")
+        <input type="radio" id="Masculino" value="Masculino" checked name="genero"><label>Masculino</label>    
+        <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
+        @else
+        <input type="radio" id="Masculino" value="Masculino" name="genero"><label>Masculino</label>    
+        <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
+        @endif
+        @if($pacien->email == "")
+        <label>Correo electronico*:</label><input type="mail" name="correo" placeholder="ej mail@mail.com" value="{{$correo}}"
+            ><br><br>
+        @else
+        <label>Correo electronico*:</label><input type="mail" name="correo" placeholder="ej mail@mail.com" value="{{$pacien->email}}"
+            ><br><br>
+        @endif
+        <label>Número celular*:</label><input type="tel" name="celular" pattern="[0-9]{10}" value="{{$pacien->numero_movil}}" 
+            placeholder="Número de telefono a 10 digitos" maxlength="10" required><br><br>
+        <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}" value="{{$pacien->numero_fijo}}"
+            placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
+        <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac" value="{{$pacien->lugar_de_procedencia}}"><br><br>
+        <label>Consultorio*:</label><select id="consultorio" name="consultorio">
+            <option selected disabled value="">Elije una opción</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br><br>
+        <label>Ingrese la fecha de su cita*:</label><input type="date" name="fecha" id="fecha" required><br><br>
+        <label>Hora*:</label><select id="hora" name="hora" required>
+            <option selected disabled value="">Elije una opción por favor</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+        </select><br><br>
+        @endforeach
+        @endif
+        @if($existe != "")
         <label>Nombre(s)*:</label><input type="text" name="nombre" placeholder="ej: Kirby" required><br><br>
         <label>Apellido paterno*:</label><input type="text" name="apellidop" placeholder="ej: Martinez"
             required><br><br>
-        <label>Apellido materno*:</label><input type="text" name="apellidom" placeholder="ej: Hernandez"
+        <label>Apellido materno*:</label><input type="text" name="apellidom"  placeholder="ej: Hernandez"
             required><br><br>
         <p>Por favor seleccione un genero</p>
         <input type="radio" id="Masculino" value="Masculino" name="genero"><label>Masculino</label>    
         <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
+        @if($correo != "")
+        <label>Correo electronico*:</label><input type="mail" name="correo" placeholder="ej mail@mail.com" value="{{$correo}}"
+            ><br><br>
+        @else
         <label>Correo electronico*:</label><input type="mail" name="correo" placeholder="ej mail@mail.com"
             ><br><br>
+        @endif    
         <label>Número celular*:</label><input type="tel" name="celular" pattern="[0-9]{10}"
             placeholder="Número de telefono a 10 digitos" maxlength="10" required><br><br>
-        <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}"
+        <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}" 
             placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
         <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac"><br><br>
         <label>Consultorio*:</label><select id="consultorio" name="consultorio">
@@ -38,6 +91,8 @@
             <option value="11:00">11:00</option>
             <option value="12:00">12:00</option>
         </select><br><br>
+        @endif
+        <input type="text" value="{{$curp}}" hidden name="curp" readonly >
         <input type="submit" value="Agendar cita"> <input type="reset" value="Reiniciar formulario">
     </form>
 @endsection

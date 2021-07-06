@@ -15,6 +15,7 @@ class citas_quiropractica extends Model
         'nombre',
         'apellido_paterno',
         'apellido_materno',
+        'CURP',
         'email',
         'consultorio',
         'estatus',

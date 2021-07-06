@@ -87,6 +87,29 @@ public function cancelarcita(Request $request)
         return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
+
+    public function buscar_usuario(Request $request)
+    {
+        $correo = $request['correo'];
+        $curp = $request['curp'];
+        $paciente = DB::select("SELECT * FROM pacientes WHERE curp = '$curp'");
+        if(empty($paciente)){
+            $existe = "NO";
+            return view("templates.agendarCita_quiropractica")
+                ->with(['paciente' => $paciente])
+                ->with(['existe' => $existe])
+                ->with(['curp' => $curp])
+                ->with(['correo' => $correo]);
+        }else{
+            $existe = "";
+            return view("templates.agendarCita_quiropractica")
+                ->with(['paciente' => $paciente])
+                ->with(['existe' => $existe])
+                ->with(['curp' => $curp])
+                ->with(['correo' => $correo]);
+        }
+    } 
+
     public function agendar_cita_quiropractica()
     {
         return view("templates.agendarCita_quiropractica");
@@ -112,8 +135,8 @@ public function cancelarcita(Request $request)
         $nombre = $request['nombre'];
         $apellidop = $request['apellidop'];
         $apellidopm = $request['apellidom'];
-        $nombre_completo = $nombre." ".$apellidop." ".$apellidopm;
-        $pacienteexiste = DB::select("SELECT * FROM pacientes WHERE nombre_completo = '$nombre_completo'");
+        $curp = $request['curp'];
+        $pacienteexiste = DB::select("SELECT * FROM pacientes WHERE CURP= '$curp'");
         if(count($pacienteexiste) == 1){
         if ($fecha < $fechaactual || $añoactual < $año){
                         echo '<script language="javascript">alert("Fecha invalida intentalo de nuevo"); history.go(-1);</script>';
@@ -124,6 +147,7 @@ public function cancelarcita(Request $request)
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'CURP'=>strtoupper($curp),
                     'email'=>($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
@@ -148,7 +172,10 @@ public function cancelarcita(Request $request)
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
                 $paciente = pacientes::create(array(
-                    'nombre_completo'=>strtoupper($nombre_completo),
+                    'nombre'=> strtoupper($request->input('nombre')),
+                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
+                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'CURP'=>strtoupper($curp),
                     'genero'=>strtoupper($request['genero']),
                     'numero_movil'=>$request['celular'],
                     'numero_fijo'=>$request['telefono'],
@@ -159,6 +186,7 @@ public function cancelarcita(Request $request)
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'CURP'=>strtoupper($curp),
                     'email'=> ($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
@@ -321,6 +349,7 @@ public function cancelarcita(Request $request)
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'CURP'=>strtoupper($curp),
                     'email'=>($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
@@ -345,8 +374,11 @@ public function cancelarcita(Request $request)
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
                 $paciente = pacientes::create(array(
-                    'nombre_completo'=>strtoupper($nombre_completo),
-                    'genero'=>strtoupper($genero),
+                    'nombre'=> strtoupper($request->input('nombre')),
+                    'apellido_paterno'=> strtoupper($request->input('apellidop')),
+                    'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'curp'=>strtoupper($request['curp']),
+                    'genero'=>strtoupper($request['genero']),
                     'numero_movil'=>$request['celular'],
                     'numero_fijo'=>$request['telefono'],
                     'lugar_de_procedencia'=>strtoupper($request['procedencia']),
@@ -356,6 +388,7 @@ public function cancelarcita(Request $request)
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
+                    'CURP'=>strtoupper($curp),
                     'email'=> ($email),
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),

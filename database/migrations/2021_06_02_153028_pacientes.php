@@ -15,7 +15,10 @@ class Pacientes extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
         $table->id();
-        $table->string('nombre_completo');
+        $table->string('nombre');
+        $table->string('apellido_paterno');
+        $table->string('apellido_materno');
+        $table->string('CURP');
         $table->string('genero');
         $table->string('numero_movil');
         $table->string('numero_fijo')->nullable();
