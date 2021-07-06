@@ -16,14 +16,10 @@ class sistemcontroller extends Controller
 //-------------------------------------------Buscar cita--------------------------------------//
 public function buscarcitas(Request $request)
 {
-    $nombre = strtoupper($request['nombre']);
-    $apellidop = strtoupper($request['apellidop']);
-    $apellidom = strtoupper($request['apellidom']);
-    $correo = ($request['correo']);
-    $celular = ($request['celular']);
+    $curp = strtoupper($request['curp']);
     $area = strtoupper($request['area']);
     if($area == "QUIROPRACTICA"){
-        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE nombre='$nombre' AND apellido_paterno = '$apellidop' AND apellido_materno = '$apellidom'");
+        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE CURP = '$curp'");
         if(count($citas)==0){
             echo '<script type="text/javascript">
             alert("No se han encontrado citas por favor verifique sus datos");
@@ -223,7 +219,7 @@ public function cancelarcita(Request $request)
 
     public function buscarcq(Request $request){
         $termb = $request['tb'];
-        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
+        $citas = citas_quiropractica::where("nombre", "Like", '%'.$termb.'%')->orwhere("consultorio", "LIKE", '%'.$termb.'%')->orwhere("folio", "=", $termb)->orwhere("fecha", "=" , $termb)->orwhere("hora", "=" , $termb)->orwhere("CURP", "=" , $termb)->orderBy('fecha', 'ASC')->simplepaginate(10);
         if($termb != ""){
         return view("templatesadmin.citas_quiropractica")
             ->with(['citas' => $citas])
