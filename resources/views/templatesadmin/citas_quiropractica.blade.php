@@ -61,7 +61,7 @@
                 <th>
                     <h3>Actualizado</h3>
                 </th>                
-                @if(session('session_tipo') == 1)
+                @if(session('session_tipo') == 1 || session('session_tipo') == 2)
                 <th>
                     <h3>Opciones</h3>
                 </th>
@@ -81,7 +81,7 @@
                     <td>{{$cita->folio}}</td>
                     <td>{{$cita->created_at}}</td>
                     <td>{{$cita->updated_at}}</td>
-                    @if(session('session_tipo') == 1)
+                    @if(session('session_tipo') == 1 || session('session_tipo') == 2)
                     <form action="{{route('modificarcita')}}" method="POST">
                         {{ csrf_field() }}
                         <td><select hidden name="id">

@@ -5,7 +5,9 @@
 @else
     <h1>Tú información es la siguinete</h1>
     <form>
-        <label>Nombre completo:</label><input type="text" value="{{session('session_name')}}" size="25" readonly><br><br>
+        <label>Nombre:</label><input type="text" value="{{session('session_name')}}" size="25" readonly><br><br>
+        <label>Apellido paterno:</label><input type="text" value="{{session('session_ap')}}" size="25" readonly><br><br>
+        <label>Apellido materno:</label><input type="text" value="{{session('session_am')}}" size="25" readonly><br><br>
         <label>Usuario:</label><input type="text" value="{{session('session_usuario')}}" size="25" readonly><br><br>
         <label>Correo:</label><input type="text" value="{{session('session_correo')}}" size="25" readonly><br><br>
         <label>Contraseña:</label><input type="password" value="{{session('session_password')}}" size="25" readonly><br><br>

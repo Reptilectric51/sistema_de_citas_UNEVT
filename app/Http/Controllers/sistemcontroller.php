@@ -325,7 +325,7 @@ public function cancelarcita(Request $request)
         $estatus = "Activo";
         $email = $request['correo'];
         if($email == ""){
-            $email = "N/A";
+            $email = "N/A"; 
         }
         $fechaactual = date("Y-m-d");
         $mesactual = date("m");
@@ -333,11 +333,11 @@ public function cancelarcita(Request $request)
         $nombre = $request['nombre'];
         $apellidop = $request['apellidop'];
         $apellidopm = $request['apellidom'];
-        $nombre_completo = $nombre." ".$apellidop." ".$apellidopm;
-        $pacienteexiste = DB::select("SELECT * FROM pacientes WHERE nombre_completo = '$nombre_completo'");
+        $curp = $request['curp'];
+        $pacienteexiste = DB::select("SELECT * FROM pacientes WHERE CURP= '$curp'");
         if(count($pacienteexiste) == 1){
-            if ($añoactual < $año || $fecha < $fechaactual ){
-                        echo '<script language="javascript">alert("Fecha invalida. Por favor intentalo de nuevo"); window.location.href="agendarcitaq/";</script>';
+        if ($fecha < $fechaactual || $añoactual < $año){
+                        echo '<script language="javascript">alert("Fecha invalida intentalo de nuevo"); history.go(-1);</script>';
                     }else{
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
@@ -364,8 +364,8 @@ public function cancelarcita(Request $request)
             }
                     }
         }else{
-            if ($añoactual < $año || $fecha < $fechaactual ){
-                        echo '<script language="javascript">alert("Fecha invalida. Intentelo de nuevo por favor"); window.location.href="agendarcitaq/";</script>';
+        if ($añoactual < $año || $fecha < $fechaactual){
+                        echo '<script language="javascript">alert("Fecha invalida intentelo de nuevo"); history.go(-1);</script>';
                     }else{
                         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
             if (count($citaexiste) == 0){
@@ -373,7 +373,7 @@ public function cancelarcita(Request $request)
                     'nombre'=> strtoupper($request->input('nombre')),
                     'apellido_paterno'=> strtoupper($request->input('apellidop')),
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
-                    'curp'=>strtoupper($request['curp']),
+                    'CURP'=>strtoupper($curp),
                     'genero'=>strtoupper($request['genero']),
                     'numero_movil'=>$request['celular'],
                     'numero_fijo'=>$request['telefono'],
@@ -392,7 +392,7 @@ public function cancelarcita(Request $request)
                     'hora'=>$request->input('hora'),
                     'folio'=>$folio,
                 ));
-                if($email != "N/A"){
+                if ($email != "N/A"){
                 $data = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");
                 Mail::to($email)->send(new EnvioComprobante($data));}
                 $cita = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folio'");

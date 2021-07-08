@@ -9,11 +9,10 @@
         <thead>
             <tr>
                 <th>
-                    <h3>Id</h3>
-                </th>
-                <th>
                     <h3>Nombre completo</h3>
                 </th>
+                <th>
+                    <h3>CURP<h3>
                 </th>
                 <th>
                     <h3>Género</h3>
@@ -35,8 +34,8 @@
                 @foreach ($pacientes as $paciente)
             <tbody>
                 <tr>
-                    <td>{{$paciente->id}}</td>
-                    <td>{{$pacinte->nombre}} {{$paciente->apellido_paterno}} {{$paciente->apellido_materno}}</td>
+                    <td>{{$paciente->nombre}} {{$paciente->apellido_paterno}} {{$paciente->apellido_materno}}</td>
+                    <td>{{$paciente->CURP}}</td>
                     <td>{{$paciente->genero}}</td>
                     <td>{{$paciente->numero_movil}}</td>
                     <td>{{$paciente->numero_fijo}}</td>

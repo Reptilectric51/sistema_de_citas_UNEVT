@@ -17,11 +17,8 @@ class modificacionesadminController extends Controller
         $user = $request['user'];
         $newcorreo = $request['correo'];
         $session = $request['session'];
-        if($session == "Administrador"){
-            $session = 1;
-        }elseif($session == "Usuario"){
-            $session = 0;
-        } 
+        $apellido_paterno = $request['Apellido_paterno'];
+        $apellido_materno = $request['Apellido_materno'];
         $userexist = DB::select("SELECT * FROM administradores WHERE usuario = '$user'");
         $userexist1 = DB::select("SELECT * FROM administradores WHERE usuario = '$user' AND id = '$id'");
         $correoexist = DB::select("SELECT * FROM administradores WHERE correo = '$newcorreo'");
@@ -29,9 +26,11 @@ class modificacionesadminController extends Controller
         if($passwordactual == $confirmpass){
             if((count($userexist)==1 && count($userexist1)==0) || (count($userexist)==1 && count($userexist1)==1) || (count($userexist)==0 && count($userexist1)==0)){
                 if((count($correoexist)==1 && count($correoexist1)==0) || (count($correoexist)==1 && count($correoexist1)==1) || (count($correoexist)==0 && count($correoexist1)==0)){
-                    $actualizardatos = DB::update("UPDATE administradores SET nombre = '$newname', correo = '$newcorreo', usuario = '$user', contraseña = '$newpass', tipo_de_sesión = '$session' WHERE id = $id");
+                    $actualizardatos = DB::update("UPDATE administradores SET nombre = '$newname', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno',  correo = '$newcorreo', usuario = '$user', contraseña = '$newpass', tipo_de_sesión = '$session' WHERE id = $id");
                     $request->session()->forget('session_id');
                     $request->session()->forget('session_name');
+                    $request->session()->forget('session_ap');
+                    $request->session()->forget('session_am');
                     $request->session()->forget('session_correo');
                     $request->session()->forget('session_password');
                     $request->session()->forget('session_usuario');

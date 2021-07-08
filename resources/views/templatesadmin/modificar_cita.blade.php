@@ -15,6 +15,7 @@
         required><br><br>
     <label>Apellido materno: </label><input type="text" value="{{$cita->apellido_materno}}" name="apellidom"
         required><br><br>
+    
     <label>Correo electrónico: </label><input type="mail" value="{{$cita->email}}" name="correo"><br><br>
     <label>Consultorio: </label><select name="consultorio">
             <option selected>{{$cita->consultorio}}</option>

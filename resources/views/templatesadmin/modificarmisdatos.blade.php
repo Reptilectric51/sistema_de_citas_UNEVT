@@ -7,6 +7,8 @@
     <form action="{{route('guardarmisdatos')}}" method="POST">
         {{ csrf_field() }}
         <label>Nombre completo:</label><input type="text" value="{{session('session_name')}}" size="25" name="nombre" required><br><br>
+        <label>Apellido paterno:</label><input type="text" value="{{session('session_ap')}}" size="25" name="Apellido_paterno" required><br><br>
+        <label>Apellido materno:</label><input type="text" value="{{session('session_am')}}" size="25" name="Apellido_materno" required><br><br>
         <label>Usuario:</label><input type="text" value="{{session('session_usuario')}}" name="user" size="25" required><br><br>
         <label>Correo:</label><input type="email" value="{{session('session_correo')}}" name="correo" size="25" required><br><br>
         <label>Contraseña:</label><input type="password" value="{{session('session_password')}}" name="pass" size="25" required minlength="8"><br><br>

@@ -19,6 +19,7 @@
             <select name="folio" hidden>
                 <option hidden selected value="{{$citas->folio}}">{{$citas->folio}}</option>
             </select>
+            <input type="button" onclick="location.href='https://sfpya.edomexico.gob.mx/recaudacion/'" value="Crear mi comprobante de págo" >
             <input type="submit" value="Descargar mi comprobante en formato pdf">
         </form><br><br>
         @endforeach

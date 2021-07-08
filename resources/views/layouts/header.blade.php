@@ -59,7 +59,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{session('session_name')}} <span
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{session('session_name')}} {{session('session_ap')}} {{session('session_am')}} <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('misdatos')}}">Mis datos</a></li>
