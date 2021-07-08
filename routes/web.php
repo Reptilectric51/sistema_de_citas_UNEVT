@@ -67,3 +67,7 @@ Route::name('buscardatospaciente')->post('buscardatospaciente/', 'App\Http\Contr
 Route::name('reportesexcelcitas')->get('/reportesexcelcitas', function () {
     return Excel::download(new CitasExport, 'citas.xlsx');
 });
+
+
+//-------------------------------------------------------Usuario root----------------------------------------------------------
+Route::name('usuarios')->get('usuarios/', 'App\Http\Controllers\rootController@buscar_usuario');

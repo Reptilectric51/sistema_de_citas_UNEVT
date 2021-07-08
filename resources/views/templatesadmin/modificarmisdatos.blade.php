@@ -10,11 +10,14 @@
         <label>Usuario:</label><input type="text" value="{{session('session_usuario')}}" name="user" size="25" required><br><br>
         <label>Correo:</label><input type="email" value="{{session('session_correo')}}" name="correo" size="25" required><br><br>
         <label>Contraseña:</label><input type="password" value="{{session('session_password')}}" name="pass" size="25" required minlength="8"><br><br>
-        @if(session('session_tipo') == 1)
+        @if(session('session_tipo') == 1 || session('session_tipo') == 2)
         <label>Tipo de sesión:</label>
         <select name="session">
-            <option value="Administrador">Administrador</option>
-            <option value="Usuario">Usuario</option><
+            <option value="1">Administrador</option>
+            <option value="0">Usuario</option>
+            @if(session('session_tipo') == 2)
+            <option value="2" selected>Superusuario</option>
+            @endif
         </select><br><br>
         <label>Confirme su contraseña para continuar:</label><input type="password" name="confpassword" size="25" placeholder="Confirme su contraseña para continuar" required minlength="8"><br><br>
         <input type="submit" value = "Guardar">
