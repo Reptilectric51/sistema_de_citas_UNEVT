@@ -71,3 +71,7 @@ Route::name('reportesexcelcitas')->get('/reportesexcelcitas', function () {
 
 //-------------------------------------------------------Usuario root----------------------------------------------------------
 Route::name('usuarios')->get('usuarios/', 'App\Http\Controllers\rootController@buscar_usuario');
+Route::name('registrar_nuevo_usuario')->get('registrar_nuevo_usuario/', function (){
+    return view('templatesroot.agregarnuevousuario');
+});
+Route::name('crearusuario')->post('crearusuario/', 'App\Http\Controllers\rootController@crear_usuario');

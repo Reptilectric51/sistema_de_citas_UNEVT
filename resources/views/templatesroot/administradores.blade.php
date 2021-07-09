@@ -1,5 +1,6 @@
 @extends ('layouts.header')
 @section('body')
+<input type="button" onclick="location.href='{{route('registrar_nuevo_usuario')}}'" value="Registrar un nuevo usuario"><br>
 <div class="table-responsive">
     <table class="table">
         <thead>
