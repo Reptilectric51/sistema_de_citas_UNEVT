@@ -18,6 +18,7 @@ class administradores extends Model
         'usuario',
         'correo',
         'tipo_de_sesión',
-        'contraseña'
+        'contraseña',
+        'estatus'
     ];
 }

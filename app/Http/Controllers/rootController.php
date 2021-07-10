@@ -17,15 +17,22 @@ class rootController extends Controller
 
     public function crear_usuario(REQUEST $request)
     {
+        $estatus = strtoupper('activo');
         $administradores = administradores::create(array(
            'nombre' => strtoupper($request['nombre']),
            'apellido_paterno' => strtoupper($request['apellido_paterno']),
            'apellido_materno' => strtoupper($request['apellido_materno']),
            'usuario' => strtoupper($request['usuario']),
-           'correo' => strtoupper($request['correo']),
+           'correo' => $request['correo'],
            'tipo_de_sesión' => strtoupper($request['sesion']),
-           'contraseña' => strtoupper($request['contraseña']) 
+           'contraseña' => $request['contraseña'], 
+           'estatus' => $estatus
         ));
         echo '<script language="javascript">alert("Usuario registrado exitosamente"); window.location.href="/usuarios";</script>';
+    }
+
+    public function editar_usuarios()
+    {
+        return view ('templatesroot.editarusuario');
     }
 }

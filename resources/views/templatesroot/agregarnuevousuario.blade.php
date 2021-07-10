@@ -1,5 +1,6 @@
 @extends('layouts.header')
 @section('body')
+@if(session('session_tipo') == 2)
 <form action="{{route('crearusuario')}}" method="POST">
     {{ csrf_field() }}
     <label>Nombre:*</label><input type="text" name="nombre" required
@@ -21,4 +22,7 @@
     <label>Contraseña:*</label><input type="password" name="contraseña" required placeholder="Por favor ingrese la contraseña para el nuevo usuario"><br><br>
     <input type="submit" value="Registrar">
 </form>
+@else
+<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=/">
+@endif
 @endsection
