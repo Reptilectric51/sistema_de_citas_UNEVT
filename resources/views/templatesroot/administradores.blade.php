@@ -1,6 +1,9 @@
 @extends ('layouts.header')
 @section('body')
 @if(session('session_tipo') == 2)
+<form>
+    <input type="search" name="termb" placeholder="Ingrese su termino de busqueda">&nbsp;<input type="submit" value="Buscar"><br><br>
+</form>
 <input type="button" onclick="location.href='{{route('registrar_nuevo_usuario')}}'" value="Registrar un nuevo usuario"><br>
 <div class="table-responsive">
     <table class="table">
@@ -24,6 +27,9 @@
                 <th>
                     <h3>Estatus</h3>
                 </th>
+                <th>
+                    <h3>Opciones</h3>
+                </th>
             </tr>
 </thead>
                 @foreach ($usuarios as $usuario)
@@ -41,11 +47,22 @@
                     @endif
                     <td>{{$usuario->contraseña}}</td>
                     <td>{{$usuario->estatus}}</td>
+                    <td>
+                        <form action="editar_usuario" method="POST">
+                            {{ csrf_field() }}
+                            <input type="text" name="id" value="{{$usuario->id}}" hidden readonly>
+                            <input type="submit" value="Editar usuario">
+                        </form>
+                    </td>
                     </form>
                 </tr>
             </tbody>
             @endforeach
     </table>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-center">
+        {!! $usuarios->links() !!}
+    </div>
     @else
     <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=/">
     @endif

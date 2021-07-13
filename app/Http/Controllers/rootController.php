@@ -22,7 +22,7 @@ class rootController extends Controller
            'nombre' => strtoupper($request['nombre']),
            'apellido_paterno' => strtoupper($request['apellido_paterno']),
            'apellido_materno' => strtoupper($request['apellido_materno']),
-           'usuario' => strtoupper($request['usuario']),
+           'usuario' => $request['usuario'],
            'correo' => $request['correo'],
            'tipo_de_sesión' => strtoupper($request['sesion']),
            'contraseña' => $request['contraseña'], 
@@ -31,8 +31,28 @@ class rootController extends Controller
         echo '<script language="javascript">alert("Usuario registrado exitosamente"); window.location.href="/usuarios";</script>';
     }
 
-    public function editar_usuarios()
+    public function editar_usuarios(Request $request)
     {
-        return view ('templatesroot.editarusuario');
+        $id = $request['id'];
+        $usuario = DB::select("SELECT * FROM administradores WHERE id = '$id'");
+        return view ('templatesroot.editaruser')
+        ->with(['usuario' => $usuario ]);
+    }
+    
+    public function guardar_usuario(Request $request)
+    {
+        $id = $request['id'];
+        $nombre = $request['nombre'];
+        $apellido_paterno = $request['apellido_paterno'];
+        $apellido_materno = $request['apellido_materno'];
+        $usuario = $request['usuario'];
+        $correo = $request['correo'];
+        $tipo_de_sesion = $request['sesion'];
+        $contraseña = $request['contraseña'];
+        $guardar_usuario = DB::update("UPDATE administradores SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', usuario = '$usuario', correo = '$correo', tipo_de_sesión = '$tipo_de_sesion', contraseña = '$contraseña'");
+        echo'<script type="text/javascript">
+                    alert("Usuario actualizado");
+                    window.location.href="usuarios/";
+                    </script>';
     }
 }
