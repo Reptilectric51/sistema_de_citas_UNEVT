@@ -27,6 +27,10 @@
             @endif
         </select>
         <br><br>
+        <label>Estatus</label><select name="estatus">
+            <option>ACTIVO</option>
+            <option>DESACTIVADO</option>
+        </select><br><br>
         <label>Contraseña:*</label><input type="password" name="contraseña" value="{{$user->contraseña}}"><br><br>
         <input type="submit" value="Guardar"> 
     </form>

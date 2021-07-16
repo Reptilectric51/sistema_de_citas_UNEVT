@@ -48,7 +48,7 @@
                     <td>{{$usuario->contraseña}}</td>
                     <td>{{$usuario->estatus}}</td>
                     <td>
-                        <form action="editar_usuario" method="POST">
+                        <form action="{{route('editar_usuario')}}" method="POST">
                             {{ csrf_field() }}
                             <input type="text" name="id" value="{{$usuario->id}}" hidden readonly>
                             <input type="submit" value="Editar usuario">
