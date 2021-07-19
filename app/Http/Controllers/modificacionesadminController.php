@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\administradores;
 
 class modificacionesadminController extends Controller
 {
@@ -45,5 +46,14 @@ class modificacionesadminController extends Controller
         }elseif($passwordactual != $confirmpass){
             echo '<script language="javascript">alert("confirmación de la contraseña incorrecta intentelo otra vez"); history.go(-1);</script>';
         }
+    }
+
+    public function buscar_usuario(Request $request)
+    {
+        $termb = $request['termb'];
+        $usuarios = administradores::where("usuario", "LIKE", '%'.$termb.'%')->simplepaginate(10);
+        return view ("templatesroot.administradores")
+        ->with(['usuarios' => $usuarios])
+        ->with(['termb' => $termb]);
     }
 }

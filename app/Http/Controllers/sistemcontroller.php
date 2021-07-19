@@ -79,7 +79,7 @@ public function cancelarcita(Request $request)
 //-------------------------------------------Quiropractica------------------------------------//
     public function citas_quiropractica()
     {
-        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(8);
+        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(10);
         return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }

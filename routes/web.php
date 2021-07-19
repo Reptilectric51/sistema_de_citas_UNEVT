@@ -77,3 +77,4 @@ Route::name('registrar_nuevo_usuario')->get('registrar_nuevo_usuario/', function
 Route::name('crearusuario')->post('crearusuario/', 'App\Http\Controllers\rootController@crear_usuario');
 Route::name('editar_usuario')->post('editar_usuario/', 'App\Http\Controllers\rootController@editar_usuarios');
 Route::name('guardar_usuario')->post('guardar_usuario/', 'App\Http\Controllers\rootController@guardar_usuario');
+Route::name('buscar_usuario')->post('buscar_usuario/', 'App\Http\Controllers\modificacionesadminController@buscar_usuario');

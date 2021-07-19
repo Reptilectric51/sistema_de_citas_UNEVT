@@ -1,8 +1,13 @@
 @extends ('layouts.header')
 @section('body')
 @if(session('session_tipo') == 2)
-<form>
+<form action="{{route('buscar_usuario')}}" method="POST">
+    @csrf
+    @if($termb == "")
     <input type="search" name="termb" placeholder="Ingrese su termino de busqueda">&nbsp;<input type="submit" value="Buscar"><br><br>
+    @elseif($termb != "")
+    <input type="search" name="termb" value="{{$termb}}" placeholder="Ingrese su termino de busqueda">&nbsp;<input type="submit" value="Buscar"><br><br>
+    @endif
 </form>
 <input type="button" onclick="location.href='{{route('registrar_nuevo_usuario')}}'" value="Registrar un nuevo usuario"><br>
 <div class="table-responsive">
