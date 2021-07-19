@@ -42,7 +42,7 @@ public function cancelarcita(Request $request)
     $mensaje = "Hola"." ".$nombrec;
     $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
     if($folio != "CANCELADO"){
-    if($rest == "Q"){
+    if($rest != "C"){
        $actualizar = DB::update("UPDATE citas_quiropractica SET estatus = 'CANCELADA', folio = 'CANCELADO' WHERE id = '$id'");
         $data=array(
             'asunto'=>'Confirmación de cancelación de cita',
@@ -88,6 +88,7 @@ public function cancelarcita(Request $request)
     {
         $correo = $request['correo'];
         $curp = $request['curp'];
+        $area = $request['area'];
         $paciente = DB::select("SELECT * FROM pacientes WHERE curp = '$curp'");
         if(empty($paciente)){
             $existe = "NO";
@@ -95,14 +96,16 @@ public function cancelarcita(Request $request)
                 ->with(['paciente' => $paciente])
                 ->with(['existe' => $existe])
                 ->with(['curp' => $curp])
-                ->with(['correo' => $correo]);
+                ->with(['correo' => $correo])
+                ->with(['area' => $area]);
         }else{
             $existe = "";
             return view("templates.agendarCita_quiropractica")
                 ->with(['paciente' => $paciente])
                 ->with(['existe' => $existe])
                 ->with(['curp' => $curp])
-                ->with(['correo' => $correo]);
+                ->with(['correo' => $correo])
+                ->with(['area' => $area]);
         }
     } 
 
@@ -119,7 +122,12 @@ public function cancelarcita(Request $request)
         list($año,$mes,$dia) = explode("-",$fecha);
         $hora = $request['hora'];
         list($horas,$minutos) = explode(":",$hora);
-        $folio = "Q".$consultorio."-".$dia.$mes.$horas;
+        $area = $request['area'];
+        if($area == "Acupuntura"){
+            $folio = "A".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Quiropractica"){
+            $folio = "Q".$consultorio."-".$dia.$mes.$horas;
+        }
         $estatus = "Activo";
         $email = $request['correo'];
         if($email == ""){
@@ -145,6 +153,7 @@ public function cancelarcita(Request $request)
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
                     'CURP'=>strtoupper($curp),
                     'email'=>($email),
+                    'area'=>$request['area'],
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
                     'fecha'=>$request->input('fecha'),
@@ -184,6 +193,7 @@ public function cancelarcita(Request $request)
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
                     'CURP'=>strtoupper($curp),
                     'email'=> ($email),
+                    'area'=>$request['area'],
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
                     'fecha'=>$request->input('fecha'),
@@ -255,7 +265,12 @@ public function cancelarcita(Request $request)
         $hora = $request['hora'];
         list($horas,$minutos) = explode(":",$hora);
         $consultorio = $request['consultorio'];
-        $folion = "Q".$consultorio."-".$dia.$mes.$horas;
+        $area = $request['area'];
+        if($area == "Acupuntura"){
+            $folion = "A".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Quiropractica"){
+            $folion = "Q".$consultorio."-".$dia.$mes.$horas;
+        }
         $nombrec = $nombre." ".$apellidop." ".$apellidom;
         $mensaje = "Hola"." ".$nombrec;
         $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
@@ -321,7 +336,12 @@ public function cancelarcita(Request $request)
         list($año,$mes,$dia) = explode("-",$fecha);
         $hora = $request['hora'];
         list($horas,$minutos) = explode(":",$hora);
-        $folio = "Q".$consultorio."-".$dia.$mes.$horas;
+        $area = $request['area'];
+        if($area == "Acupuntura"){
+            $folio = "A".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Quiropractica"){
+            $folio = "Q".$consultorio."-".$dia.$mes.$horas;
+        }
         $estatus = "Activo";
         $email = $request['correo'];
         if($email == ""){
@@ -347,6 +367,7 @@ public function cancelarcita(Request $request)
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
                     'CURP'=>strtoupper($curp),
                     'email'=>($email),
+                    'area'=>$request['area'],
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
                     'fecha'=>$request->input('fecha'),
@@ -386,6 +407,7 @@ public function cancelarcita(Request $request)
                     'apellido_materno'=> strtoupper($request->input('apellidom')),
                     'CURP'=>strtoupper($curp),
                     'email'=> ($email),
+                    'area'=>$request['area'],
                     'consultorio'=>$request->input('consultorio'),
                     'estatus'=> strtoupper($estatus),
                     'fecha'=>$request->input('fecha'),

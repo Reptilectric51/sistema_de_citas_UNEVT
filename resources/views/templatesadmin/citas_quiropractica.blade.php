@@ -88,6 +88,7 @@
                                 <option selected>{{$cita->id}}</option>
                             </select>
                             <input type="text" name="estatus" value="{{$cita->estatus}}" hidden readonly>
+                            <input type="text" name="area" value="{{$cita->area}}" hidden readonly>
                             <input type="submit" value="Modificar cita">
                         </td>
                     </form>

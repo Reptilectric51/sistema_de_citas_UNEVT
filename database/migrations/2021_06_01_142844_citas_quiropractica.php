@@ -20,6 +20,7 @@ class CitasQuiropractica extends Migration
             $table->string('apellido_materno');
             $table->string('CURP');
             $table->string('email')->nullable();
+            $table->string('area')->nullable();
             $table->string('consultorio');
             $table->string('estatus');
             $table->date('fecha');

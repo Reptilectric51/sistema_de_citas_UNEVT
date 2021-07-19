@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('apellido_materno');
             $table->string('usuario')->unique();
             $table->string('correo');
+            $table->string('area');
             $table->integer('tipo_de_sesión');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contraseña');

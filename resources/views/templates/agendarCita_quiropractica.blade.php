@@ -38,6 +38,7 @@
         <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}" value="{{$pacien->numero_fijo}}"
             placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
         <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac" value="{{$pacien->lugar_de_procedencia}}"><br><br>
+        <input type="text" value="{{$area}}" name="area" hidden readonly>
         <label>Consultorio*:</label><select id="consultorio" name="consultorio">
             <option selected disabled value="">Elije una opción</option>
             <option value="1">1</option>
@@ -76,6 +77,7 @@
         <label>Número de telefono fijo:</label><input type="tel" name="telefono" pattern="[0-9]{10}" 
             placeholder="Número de telefono fijo a 10 digitos" maxlength="10"><br><br>
         <label>Lugar de procedencia*:</label><input type="text" name="procedencia" placeholder="ej: Ocoyoacac"><br><br>
+        <input type="text" value="{{$area}}" name="area" hidden readonly>
         <label>Consultorio*:</label><select id="consultorio" name="consultorio">
             <option selected disabled value="">Elije una opción</option>
             <option value="1">1</option>
