@@ -29,6 +29,11 @@
                 <th>
                     <h3>Correo electronico</h3>
                 </th>
+                @if( session('session_tipo') == 2 || session('session_tipo') == 1)
+                <th>
+                    <h3>Opciones</h3>
+                </th>
+                @endif
             </tr>
             <thead>
                 @foreach ($pacientes as $paciente)
@@ -41,6 +46,15 @@
                     <td>{{$paciente->numero_fijo}}</td>
                     <td>{{$paciente->lugar_de_procedencia}}</td>
                     <td>{{$paciente->email}}</td>
+                    @if( session('session_tipo') == 2 || session('session_tipo') == 1)
+                    <td>
+                        <form action="{{route('modificar_paciente')}}" method="POST">
+                            @csrf
+                            <input type="text" name=id value="{{$paciente->id}}" readonly hidden>
+                            <input type="submit" value = "Actualizar datos">
+                        </form>
+                    </td>
+                    @endif
                 </tr>
             </tbody>
             @endforeach

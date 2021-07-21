@@ -442,4 +442,25 @@ public function cancelarcita(Request $request)
         }
     }
 
+    public function modificar_pacientes(Request $request){
+        $id = $request['id'];
+        $paciente = DB::select("SELECT * FROM pacientes WHERE id = '$id'");
+        return view("templatesadmin.modificar_datos")
+        ->with(["paciente"=>$paciente]);
+    }
+
+    public function salvar_paciente(Request $request){
+        $id = $request['id'];
+        $nombre = strtoupper($request['nombre']);
+        $apellidop = strtoupper($request['apellido_paterno']);
+        $apellidom = strtoupper($request['apellido_materno']);
+        $curp = strtoupper($request['curp']);
+        $genero = strtoupper($request['genero']);
+        $celular = strtoupper($request['celular']);
+        $fijo = strtoupper($request['telefono']);
+        $procedencia = strtoupper($request['procedencia']);
+        $email = strtoupper($request['correo']);
+        $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' ");
+        echo '<script language="javascript">alert("Paciente actualizado correctamente"); window.location.href="pacientes/";</script>';
+    }
 }

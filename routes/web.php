@@ -40,6 +40,8 @@ Route::name('bye')->get('bye/', 'App\Http\Controllers\loginController@logout');
 
 //----------------------------------------------------Pacientes--------------------------------------------------------------
 Route::name('pacientes')->get('pacientes/', 'App\Http\Controllers\sistemcontroller@Pacientes');
+Route::name('modificar_paciente')->post('modificar_pacientes/', 'App\Http\Controllers\sistemcontroller@modificar_pacientes');
+Route::name('salvar_paciente')->post('salvar_paciente/', 'App\Http\Controllers\sistemcontroller@salvar_paciente');
 
 //----------------------------------------------------Datos-------------------------------------------------------------------
 Route::name('modificardatos')->get('modificardatos/', function (){

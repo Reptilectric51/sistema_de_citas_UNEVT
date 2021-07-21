@@ -3,7 +3,7 @@
 @if(session('session_tipo') == 2)
 <form action="{{route('buscar_usuario')}}" method="POST">
     @csrf
-    @if($termb == "")
+    @if(empty($termb))
     <input type="search" name="termb" placeholder="Ingrese su termino de busqueda">&nbsp;<input type="submit" value="Buscar"><br><br>
     @elseif($termb != "")
     <input type="search" name="termb" value="{{$termb}}" placeholder="Ingrese su termino de busqueda">&nbsp;<input type="submit" value="Buscar"><br><br>
