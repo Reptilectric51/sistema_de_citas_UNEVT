@@ -460,7 +460,7 @@ public function cancelarcita(Request $request)
         $fijo = strtoupper($request['telefono']);
         $procedencia = strtoupper($request['procedencia']);
         $email = strtoupper($request['correo']);
-        $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' ");
+        $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', genero = '$genero' ,CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' ");
         echo '<script language="javascript">alert("Paciente actualizado correctamente"); window.location.href="pacientes/";</script>';
     }
 }

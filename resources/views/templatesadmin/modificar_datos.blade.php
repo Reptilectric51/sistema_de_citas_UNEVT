@@ -21,8 +21,8 @@
         <input type="radio" id="Masculino" value="Masculino" checked name="genero"><label>Masculino</label>    
         <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
         @elseif($datos->genero == "FEMENINO")
-        <input type="radio" id="Masculino" value="Masculino" checked name="genero"><label>Masculino</label>    
-        <input type="radio" id="Femenino" value="Femenino" name="genero"><label>Femenino</label> <br><br>
+        <input type="radio" id="Masculino" value="Masculino"  name="genero"><label>Masculino</label>    
+        <input type="radio" id="Femenino" value="Femenino" checked name="genero"><label>Femenino</label> <br><br>
     @endif
     <label>Número de celular:</label>
     <input type="tel" name="celular" pattern="[0-9]{10}" value="{{$datos->numero_movil}}" placeholder="Número de telefono a 10 digitos" maxlength="10" required><br><br>
