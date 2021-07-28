@@ -86,9 +86,12 @@ public function cancelarcita(Request $request)
 
     public function buscar_usuario(Request $request)
     {
+        date_default_timezone_set('America/Mexico_City');
         $correo = $request['correo'];
         $curp = $request['curp'];
         $area = $request['area'];
+        $diaactual = date('l');
+        $fechaactual = date("Y-m-d");
         $paciente = DB::select("SELECT * FROM pacientes WHERE curp = '$curp'");
         if(empty($paciente)){
             $existe = "NO";
@@ -97,7 +100,9 @@ public function cancelarcita(Request $request)
                 ->with(['existe' => $existe])
                 ->with(['curp' => $curp])
                 ->with(['correo' => $correo])
-                ->with(['area' => $area]);
+                ->with(['area' => $area])
+                ->with(['diaactual' => $diaactual])
+                ->with(['fechaactual' => $fechaactual]);
         }else{
             $existe = "";
             return view("templates.agendarCita_quiropractica")
@@ -105,7 +110,8 @@ public function cancelarcita(Request $request)
                 ->with(['existe' => $existe])
                 ->with(['curp' => $curp])
                 ->with(['correo' => $correo])
-                ->with(['area' => $area]);
+                ->with(['area' => $area])
+                ->with(['fechaactual' => $fechaactual]);
         }
     } 
 
@@ -127,6 +133,11 @@ public function cancelarcita(Request $request)
             $folio = "A".$consultorio."-".$dia.$mes.$horas;
         }elseif($area == "Quiropractica"){
             $folio = "Q".$consultorio."-".$dia.$mes.$horas;
+        }
+        elseif($area == "Gerontología"){
+            $folio = "G".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Imagenología"){
+            $folio = "I".$consultorio."-".$dia.$mes.$horas;
         }
         $estatus = "Activo";
         $email = $request['correo'];

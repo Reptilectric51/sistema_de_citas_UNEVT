@@ -12,6 +12,8 @@
             <option selected disabled>Seleccione el area</option>
             <option>Quiropractica</option>
             <option>Acupuntura</option>
+            <option>Gerontología</option>
+            <option>Imagenología</option>
         </select><br><br>
         <input type="submit" value="Enviar">
     </form>
