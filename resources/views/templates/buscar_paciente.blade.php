@@ -13,8 +13,13 @@
             <option>Quiropractica</option>
             <option>Acupuntura</option>
             <option>Gerontología</option>
-            <option>Imagenología</option>
+            <option>Ultrasonido</option>
+            <option>Rayos x</option>
+            <option>Rehabilitación</option>
+            <option>Laboratorio</option>
+            <option>Cámara hiperbárica</option>
         </select><br><br>
+        <label>Ingrese la fecha de su cita*:</label><input type="date" name="fecha" id="fecha" required><br><br>
         <input type="submit" value="Enviar">
     </form>
     @endsection

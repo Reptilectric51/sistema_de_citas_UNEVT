@@ -17,9 +17,7 @@ class sistemcontroller extends Controller
 public function buscarcitas(Request $request)
 {
     $curp = strtoupper($request['curp']);
-    $area = strtoupper($request['area']);
-    if($area == "QUIROPRACTICA"){
-        $citas = DB::select("SELECT * FROM citas_quiropractica WHERE CURP = '$curp'");
+    $citas = citas_quiropractica::where("curp", "=", $curp)->simplepaginate(5);
         if(count($citas)==0){
             echo '<script type="text/javascript">
             alert("No se han encontrado citas por favor verifique sus datos");
@@ -29,7 +27,6 @@ public function buscarcitas(Request $request)
             return view("templates.miscitas")
         ->with(['citas' => $citas]);
         }
-    }
 }
 
 public function cancelarcita(Request $request)
@@ -76,7 +73,7 @@ public function cancelarcita(Request $request)
         ->with(['pacientes' => $pacientes]);
     }
 
-//-------------------------------------------Quiropractica------------------------------------//
+//-------------------------------------------Agendar citas------------------------------------//
     public function citas_quiropractica()
     {
         $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(10);
@@ -90,9 +87,16 @@ public function cancelarcita(Request $request)
         $correo = $request['correo'];
         $curp = $request['curp'];
         $area = $request['area'];
-        $diaactual = date('l');
-        $fechaactual = date("Y-m-d");
-        $paciente = DB::select("SELECT * FROM pacientes WHERE curp = '$curp'");
+        $fecha = $request['fecha'];
+        $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+            $nomdia = $dias[date('N', strtotime($fecha))-1];
+        if($nomdia == "Domingo"){
+            echo '<script language="javascript">alert("No se pueden agendar citas el dia domingo por favor pruebe otra fecha"); history.go(-1);</script>';
+        }elseif(($area == "Ultrasonido" && $nomdia != "Martes" && $nomdia != "Jueves" )){
+            echo '<script language="javascript">alert("Para ultrasonidos solo puede agendar cita martes y jueves por favor verifique la fecha"); history.go(-1);</script>';
+        }
+        else{
+            $paciente = DB::select("SELECT * FROM pacientes WHERE curp = '$curp'");
         if(empty($paciente)){
             $existe = "NO";
             return view("templates.agendarCita_quiropractica")
@@ -101,8 +105,8 @@ public function cancelarcita(Request $request)
                 ->with(['curp' => $curp])
                 ->with(['correo' => $correo])
                 ->with(['area' => $area])
-                ->with(['diaactual' => $diaactual])
-                ->with(['fechaactual' => $fechaactual]);
+                ->with(['fecha' => $fecha])
+                ->with(['nomdia' => $nomdia]);
         }else{
             $existe = "";
             return view("templates.agendarCita_quiropractica")
@@ -111,8 +115,11 @@ public function cancelarcita(Request $request)
                 ->with(['curp' => $curp])
                 ->with(['correo' => $correo])
                 ->with(['area' => $area])
-                ->with(['fechaactual' => $fechaactual]);
+                ->with(['fecha' => $fecha])
+                ->with(['nomdia' => $nomdia]);
         }
+        }
+        /**/
     } 
 
     public function agendar_cita_quiropractica()
@@ -136,14 +143,27 @@ public function cancelarcita(Request $request)
         }
         elseif($area == "Gerontología"){
             $folio = "G".$consultorio."-".$dia.$mes.$horas;
-        }elseif($area == "Imagenología"){
-            $folio = "I".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Ultrasonido"){
+            $folio = "U".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Rayos x"){
+            $folio = "RX".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Rehabilitación"){
+            $folio = "R".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Laboratorio"){
+            $folio = "L".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Cámara hiperbárica"){
+            $folio = "CH".$consultorio."-".$dia.$mes.$horas;
         }
         $estatus = "Activo";
         $email = $request['correo'];
         if($email == ""){
             $email = "N/A"; 
         }
+            $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+            $nomdia = $dias[date('N', strtotime($fecha))-1];
+        if($nomdia == "Domingo"){
+            echo '<script language="javascript">alert("No se pueden agendar citas el dia domingo por favor pruebe otra fecha"); history.go(-1);</script>';
+        }else{
         $fechaactual = date("Y-m-d");
         $mesactual = date("m");
         $añoactual = date("Y");
@@ -178,7 +198,7 @@ public function cancelarcita(Request $request)
                 return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
             }else{
-                echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
+                echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); history.go(-1);;</script>';
             }
                     }
         }else{
@@ -218,11 +238,12 @@ public function cancelarcita(Request $request)
                 return view("templates.comprobante_quiropractica")
                 ->with(['cita' => $cita]);
             }else{
-                echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); window.location.href="agendarcitaq/";</script>';
+                echo '<script language="javascript">alert("La cita con ese folio ya ha sido agendada. Por favor elija otra fecha o hora"); history.go(-1)</script>';
             }
                     }
         }
     /**/ 
+        }
     }
 
     public function comprobantecqpdf(Request $request){
@@ -353,11 +374,21 @@ public function cancelarcita(Request $request)
         }elseif($area == "Quiropractica"){
             $folio = "Q".$consultorio."-".$dia.$mes.$horas;
         }
+        elseif($area == "Gerontología"){
+            $folio = "G".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Imagenología"){
+            $folio = "I".$consultorio."-".$dia.$mes.$horas;
+        }
         $estatus = "Activo";
         $email = $request['correo'];
         if($email == ""){
             $email = "N/A"; 
         }
+        $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+            $nomdia = $dias[date('N', strtotime($fecha))-1];
+        if($nomdia == "Domingo"){
+            echo '<script language="javascript">alert("No se pueden agendar citas el dia domingo por favor pruebe otra fecha"); history.go(-1);</script>';
+        }else{
         $fechaactual = date("Y-m-d");
         $mesactual = date("m");
         $añoactual = date("Y");
@@ -438,6 +469,8 @@ public function cancelarcita(Request $request)
         }
     /**/ 
     }
+}
+
     public function comprobantecitasqpdf(Request $request){
         $termb = $request['tb1'];
         if($termb == ""){
@@ -474,4 +507,6 @@ public function cancelarcita(Request $request)
         $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', genero = '$genero' ,CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' ");
         echo '<script language="javascript">alert("Paciente actualizado correctamente"); window.location.href="pacientes/";</script>';
     }
+
+    
 }
