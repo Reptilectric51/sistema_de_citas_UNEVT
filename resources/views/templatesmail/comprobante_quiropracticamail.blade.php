@@ -14,5 +14,6 @@
         {!!QrCode::size(300)->generate("{$citas->folio}") !!}
         @endforeach
         <p>Lo esperamos en la fecha marcada en su cita guarde este comprobante para recibir la atención</p>
+        <img src="{{ asset('images/protocolo_de_ingreso.jpg') }}" width= 1500px>
     </body>
 </html>
