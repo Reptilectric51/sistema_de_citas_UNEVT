@@ -275,9 +275,15 @@ public function cancelarcita(Request $request)
     public function modificarcita(Request $request){
         $id = $request['id'];
         $cestatus = $request['estatus'];
+        $area = $request['area'];
+        $fecha = $request['fecha'];
+        $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+            $nomdia = $dias[date('N', strtotime($fecha))-1];
         $citas = DB::select("SELECT * FROM citas_quiropractica WHERE id = '$id'");
         return view("templatesadmin.modificar_cita")
-        ->with(['citas' => $citas]);
+        ->with(['citas' => $citas])
+        ->with(['area' => $area])
+        ->with(['nomdia' => $nomdia]);
         /**/ 
     }
 
@@ -293,6 +299,11 @@ public function cancelarcita(Request $request)
         $fecha = $request['fecha'];
         $fechaactual = date("Y-m-d");
         $añoactual = date("Y");
+        $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+            $nomdia = $dias[date('N', strtotime($fecha))-1];
+        if($nomdia == "Domingo"){
+            echo '<script language="javascript">alert("No se pueden agendar citas el dia domingo por favor pruebe otra fecha"); history.go(-1);</script>';
+        }else{
         list($año,$mes,$dia) = explode("-",$fecha);
         $hora = $request['hora'];
         list($horas,$minutos) = explode(":",$hora);
@@ -302,6 +313,19 @@ public function cancelarcita(Request $request)
             $folion = "A".$consultorio."-".$dia.$mes.$horas;
         }elseif($area == "Quiropractica"){
             $folion = "Q".$consultorio."-".$dia.$mes.$horas;
+        }
+        elseif($area == "Gerontología"){
+            $folion = "G".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Ultrasonido"){
+            $folion = "U".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Rayos x"){
+            $folion = "RX".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Rehabilitación"){
+            $folion = "R".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Laboratorio"){
+            $folion = "L".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Cámara hiperbárica"){
+            $folion = "CH".$consultorio."-".$dia.$mes.$horas;
         }
         $nombrec = $nombre." ".$apellidop." ".$apellidom;
         $mensaje = "Hola"." ".$nombrec;
@@ -359,6 +383,7 @@ public function cancelarcita(Request $request)
         } 
         /**/
     }
+    }
     public function guardar_cita_quiropracticad(Request $request)
     {
         $genero = $request['genero'];
@@ -376,8 +401,16 @@ public function cancelarcita(Request $request)
         }
         elseif($area == "Gerontología"){
             $folio = "G".$consultorio."-".$dia.$mes.$horas;
-        }elseif($area == "Imagenología"){
-            $folio = "I".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Ultrasonido"){
+            $folio = "U".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Rayos x"){
+            $folio = "RX".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Rehabilitación"){
+            $folio = "R".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Laboratorio"){
+            $folio = "L".$consultorio."-".$dia.$mes.$horas;
+        }elseif($area == "Cámara hiperbárica"){
+            $folio = "CH".$consultorio."-".$dia.$mes.$horas;
         }
         $estatus = "Activo";
         $email = $request['correo'];
