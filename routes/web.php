@@ -49,7 +49,7 @@ Route::name('modificardatos')->get('modificardatos/', function (){
 });
 Route::name('guardarmisdatos')->post('guardarmisdatos/', 'App\Http\Controllers\modificacionesadminController@modificardatosadmin');
 
-//----------------------------------------------------citas quiropractica----------------------------------------------------
+//----------------------------------------------------citas--------------------------------------------------------
 Route::name('citasq')->get('citasq/', 'App\Http\Controllers\sistemcontroller@citas_quiropractica');
 Route::name('agendarCitaq')->get('agendarcitaq/', 'App\Http\Controllers\sistemcontroller@agendar_cita_quiropractica');
 Route::name('guardarcitaq')->post('guardarcitaq/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropractica');
@@ -64,6 +64,9 @@ Route::name('buscarusuario')->get('buscarusuario/', function (){
     return view('templates.buscar_paciente');
 });
 Route::name('buscardatospaciente')->post('buscardatospaciente/', 'App\Http\Controllers\sistemcontroller@buscar_usuario');
+Route::name('como_pagar')->get('como_pagar/', function (){
+    return view('templates.video_de_ayuda');
+});
 
 //------------------------------------------------------Reportes---------------------------------------------------------------
 Route::name('reportesexcelcitas')->get('/reportesexcelcitas', function () {

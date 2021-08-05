@@ -20,12 +20,13 @@
                 <option hidden selected value="{{$citas->folio}}">{{$citas->folio}}</option>
             </select>
             <input type="button" onclick="location.href='https://sfpya.edomexico.gob.mx/recaudacion/'" value="Crear mi comprobante de págo" >
-            <input type="submit" value="Descargar mi comprobante en formato pdf">
+            <input type="submit" value="Descargar mi comprobante de cita en formato pdf">
+            <input type="button" onclick="window.open('{{route('como_pagar')}}', '_blank');" value="No se como crear mi formato de pago">
         </form><br><br>
         @endforeach
         @if(empty(session('session_id')))
-        <form action="/" method="GET">
-            <input type="submit" value="Regresar al inicio">
+        <form action="{{route('index')}}" method="GET">
+            <input type="submit" value="Planeo pagar en clinica y regresar al inicio">
         </form>
         @else
         <form action="/citasq" method="GET">
