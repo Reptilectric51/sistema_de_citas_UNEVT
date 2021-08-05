@@ -19,7 +19,7 @@
             <select name="folio" hidden>
                 <option hidden selected value="{{$citas->folio}}">{{$citas->folio}}</option>
             </select>
-            <input type="button" onclick="location.href='https://sfpya.edomexico.gob.mx/recaudacion/'" value="Crear mi comprobante de págo" >
+            <input type="button" onclick="location.href='https://sfpya.edomexico.gob.mx/recaudacion/'" value="Planeo pagar en línea" >
             <input type="submit" value="Descargar mi comprobante de cita en formato pdf">
             <input type="button" onclick="window.open('{{route('como_pagar')}}', '_blank');" value="No se como crear mi formato de pago">
         </form><br><br>
@@ -34,6 +34,7 @@
         </form>
         @endif
         <p>Lo esperamos en la fecha marcada en su cita guarde este comprobante para recibir la atención</p>
+        <p>Si no encuentra el estudio en servicio al contribuyente favor de pasar a caja</p>
         <img src="{{ asset('images/protocolo_de_ingreso.jpg') }}" width= 1000px>
     </body>
 </html>
