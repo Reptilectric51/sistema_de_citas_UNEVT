@@ -27,6 +27,13 @@ Route::name('misdatos')->get('misdatos/', function (){
     return view('templatesadmin.misdatos');
 });
 
+Route::name('about')->get('about/', function (){
+    return view('templates.about');
+});
+
+Route::name('contact')->get('contact/', function (){
+    return view('templates.contact');
+});
 //---------------------------------------------------Buscar cita-------------------------------------------------------------
 Route::name('buscarcita')->get('buscarcita/', function (){
     return view('templates.buscarmicita');

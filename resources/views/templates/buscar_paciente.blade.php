@@ -1,5 +1,6 @@
 @extends('layouts.header')
     @section('body')
+    <br><br><br><br><br><br><br><br>
     <h3>Por favor completa los siguientes datos</h3>
     <form action="{{route('buscardatospaciente')}}" method="POST">
         {{ csrf_field() }}
