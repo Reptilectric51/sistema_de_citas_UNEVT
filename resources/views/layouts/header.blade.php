@@ -6,7 +6,8 @@
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
-	<meta name="keywords" content="Medic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<meta name="keywords"
+		content="Medic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -28,10 +29,12 @@
 	<!-- //Custom-Files -->
 
 	<!-- Web-Fonts -->
-	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-	    rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-	    rel="stylesheet">
+	<link
+		href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+		rel="stylesheet">
+	<link
+		href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+		rel="stylesheet">
 	<!-- //Web-Fonts -->
 
 </head>
@@ -71,7 +74,9 @@
 							<!-- //social icons -->
 							<div class="col-6 header-top_w3layouts pl-3 text-lg-left text-center">
 								<p class="text-white">
-									<i class="fas fa-map-marker-alt mr-2"></i>Acueducto del Alto Lerma Pedregal de Guadalupe Hidalgo, Méx.</p>
+									<i class="fas fa-map-marker-alt mr-2"></i>Acueducto del Alto Lerma Pedregal de
+									Guadalupe Hidalgo, Méx.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -85,7 +90,9 @@
 							</div>
 							<div class="col-lg-5 col-6 header-w3layouts pl-4 text-lg-left">
 								<p class="text-white">
-									<i class="fas fa-phone mr-2"></i>7282878382</p>
+									<i class="fas fa-phone mr-2"></i><a href="tel:7282878382"
+										style="color:#FFF;">7282878382</a>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -94,58 +101,6 @@
 		</div>
 	</header>
 	<!-- //top-bar -->
-    <!-- header 2 -->
-	<div id="home">
-		<!-- navigation -->
-		<div class="main-top py-1">
-			<nav class="navbar navbar-expand-lg navbar-light fixed-navi">
-				<div class="container">
-					<!-- logo -->
-					<h1>
-						<a class="navbar-brand font-weight-bold font-italic" href="{{route('login')}}">
-							<img style="width: 69px;height: 69px;" src="images/logo.png">
-							<span>Clínica</span>Integral
-							<i class="fas fa-hospital"></i>
-						</a>
-					</h1>
-					<!-- //logo -->
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-						<ul class="navbar-nav ml-lg-auto">
-							<li class="nav-item active mt-lg-0 mt-3">
-								<a class="nav-link" href="{{route('login')}}">Inicio
-									<span class="sr-only">(current)</span>
-								</a>
-							</li>
-							<li class="nav-item mx-lg-4 my-lg-0 my-3">
-								<a class="nav-link" href="{{route('about')}}">Acerca de Nosotros</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-								    aria-haspopup="true" aria-expanded="false">Información</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="{{route('about')}}">Servicios</a>
-								</div>
-							</li>
-							<li class="nav-item mx-lg-4 my-lg-0 my-3">
-								<a class="nav-link" href="{{route('buscarusuario')}}">Agendar Cita</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{route('contact')}}">Conócenos</a>
-							</li>
-						</ul>
-						<!-- login -->
-						<a href="#" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" data-toggle="modal" data-target="#exampleModalCenter1">
-							<i class="fas fa-sign-in-alt mr-2"></i>Ingresar</a>
-						<!-- //login -->
-					</div>
-				</div>
-			</nav>
-		</div>
-        <!-- header 2 -->
 	<div id="home">
 		<!-- navigation -->
 		<div class="main-top py-1">
@@ -160,8 +115,9 @@
 						</a>
 					</h1>
 					<!-- //logo -->
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -175,26 +131,38 @@
 								<a class="nav-link" href="{{route('about')}}">Acerca de Nosotros</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-								    aria-haspopup="true" aria-expanded="false">Información</a>
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 									<a class="dropdown-item" href="{{route('about')}}">Servicios</a>
 								</div>
 							</li>
 							<li class="nav-item mx-lg-4 my-lg-0 my-3">
-								<a class="nav-link" href="appointment.html">Agendar Cita</a>
+								<a class="nav-link" href="{{route('buscarusuario')}}">Agendar Cita</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="{{route('contact')}}">Conócenos</a>
 							</li>
-						
-						<!-- login -->
-                        </ul>
-						<!-- login -->
-						<a href="#" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" data-toggle="modal" data-target="#exampleModalCenter1">
-						<i class="fas fa-sign-in-alt mr-2"></i>Ingresar</a>
+
+							<!-- login -->
+							@if(empty(session('session_id')))
+						</ul>
+						<a href="#" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" data-toggle="modal"
+							data-target="#exampleModalCenter1">
+							<i class="fas fa-sign-in-alt mr-2"></i>Ingresar</a>
 						<!-- //login -->
+						@else
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sesión de {{session('session_name')}} {{session('session_ap')}}</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+								<a class="dropdown-item" href="{{route('bye')}}">Cerrar sesión</a>
+							</div>
+						</li>
+						</ul>
+						@endif
 					</div>
 				</div>
 			</nav>
@@ -214,14 +182,15 @@
 						<div class="login px-4 mx-auto mw-100">
 							<h5 class="text-center mb-4">Inicia ahora</h5>
 							<form action="{{route('login')}}" method="post">
-                            @csrf
+								@csrf
 								<div class="form-group">
 									<label>Usuario</label>
 									<input type="text" class="form-control" name="usuario" placeholder="" required="">
 								</div>
 								<div class="form-group">
 									<label class="mb-2">Contraseña</label>
-									<input type="password" class="form-control" name="contraseña" placeholder="" required="">
+									<input type="password" class="form-control" name="contraseña" placeholder=""
+										required="">
 								</div>
 								<button type="submit" class="btn submit mb-4">Iniciar sesión</button>
 							</form>
@@ -232,8 +201,8 @@
 		</div>
 	</div>
 	<!-- //header 2 -->
-        @yield('body')
-    	<!-- footer -->
+	@yield('body')
+	<!-- footer -->
 	<footer>
 		<div class="w3ls-footer-grids pt-sm-4 pt-3">
 			<div class="container py-xl-5 py-lg-3">
@@ -245,7 +214,9 @@
 								<i class="far fa-hospital"></i>
 							</a>
 						</h2>
-						<p align="eft">En nuestra clínica queremos servir a todos aquellos que requieran de algún servicio de los que tengamos disponibles y nos complacerá recibirlos nuevamente en esta su clínica.</p>
+						<p align="eft">En nuestra clínica queremos servir a todos aquellos que requieran de algún
+							servicio de los que tengamos disponibles y nos complacerá recibirlos nuevamente en esta su
+							clínica.</p>
 					</div>
 					<div class="col-md-4 w3l-footer my-md-0 my-4">
 						<h3 class="mb-sm-3 mb-2 text-white">Dirección</h3>
@@ -300,6 +271,6 @@
 	</footer>
 	<!-- //footer -->
 
-    </body>
+</body>
 
 </html>

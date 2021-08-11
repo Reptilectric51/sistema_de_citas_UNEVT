@@ -12,7 +12,7 @@
 									<span>de calidad</span>
 								</h3>
 								<p class="mt-3 mb-md-5 mb-3">Conoce nuestros servicios.</p>
-								<a href="about.html">Saber más.
+								<a href="{{route('about')}}">Saber más.
 									<i class="fa fa-caret-right ml-2" aria-hidden="true"></i>
 								</a>
 							</div>
@@ -42,7 +42,7 @@
 									<span>de todos</span>
 								</h3>
 								<p class="mt-3 mb-md-5 mb-3">Estamos aún más cerca de ti.</p>
-								<a href="contact.html">Conócenos. 
+								<a href="{{route('contact')}}">Conócenos. 
 									<i class="fa fa-caret-right ml-2" aria-hidden="true"></i>
 								</a>
 							</div>
