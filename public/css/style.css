@@ -1531,6 +1531,11 @@ select.form-control:not([size]):not([multiple]) {
     width: 56%;
 }
 
+.contact1-right-w3l.appoint-form {
+    float: right;
+    width: 90%;
+}
+
 label.col-form-label {
     color: #000;
     text-align: left;

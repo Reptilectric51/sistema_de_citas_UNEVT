@@ -33,16 +33,15 @@
                 Sujetos Obligados del Estado de México y Municipios.</p>
         </div>
         <div class="d-flex">
-            <div class="appoint-img">
-            </div>
-        @if(empty(session('session_id')))
+            <div class="appoint-img"></div>
+            @if(empty(session('session_id')))
         <form action="{{route('guardarcitaq')}}" method="POST">
             @else
             <form action="{{route('guardarcitaqadmin')}}" method="POST">
                 @endif
                 {{ csrf_field() }}
                 @if($existe == "")
-                <div class="contact-right-w3l appoint-form">
+                <div class="contact1-right-w3l appoint-form">
                     <h5 class="title-w3 text-center mb-5">Por favor llena el siguiente formulario con tus datos para
                         agendar tú cita</h5>
                     @foreach($paciente as $pacien)
@@ -250,13 +249,13 @@
                         <option value="10:30">10:30</option>
                         <option value="11:00">11:00</option>
                         <option value="11:30">11:30</option>
-                    </select><br><br>
+                    </select>
                     @elseif($area == "Rayos x")
                     <label> for="recipient-name" class="col-form-label"Consultorio*:</label><select class="form-control"
                         id="consultorio" name="consultorio">
                         <option selected disabled value="">Elije una opción por favor</option>
                         <option value="1">1</option>
-                    </select><br><br>
+                    </select>
                     <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                         id="hora" name="hora" required>
                         <option selected disabled value="">Elije una opción por favor</option>
@@ -277,7 +276,7 @@
                         <option value="15:30">15:30</option>
                         <option value="16:00">16:00</option>
                         <option value="16:30">16:30</option>
-                    </select><br><br>
+                    </select>
                     @elseif($area == "Rehabilitación")
                     <label for="recipient-name" class="col-form-label">Consultorio*:</label><select class="form-control"
                         id="consultorio" name="consultorio">
@@ -292,7 +291,7 @@
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
-                    </select><br><br>
+                    </select>
                     @if($nomdia != "Sabado")
                     <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                         id="hora" name="hora" required>
@@ -306,7 +305,7 @@
                         <option value="14:00">14:00</option>
                         <option value="15:00">15:00</option>
                         <option value="16:00">16:00</option>
-                    </select><br><br>
+                    </select>
                     @elseif($nomdia == "Sabado")
                     <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                         id="hora" name="hora" required>
@@ -317,14 +316,14 @@
                         <option value="11:00">11:00</option>
                         <option value="12:00">12:00</option>
                         <option value="13:00">13:00</option>
-                    </select><br><br>
+                    </select>
                     @endif
                     @elseif($area == "Laboratorio")
                     <label for="recipient-name" class="col-form-label">Consultorio*:</label><select class="form-control"
                         id="consultorio" name="consultorio">
                         <option selected disabled value="">Elije una opción por favor</option>
                         <option value="1">1</option>
-                    </select><br><br>
+                    </select>
                     <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                         id="hora" name="hora" required>
                         <option selected disabled value="">Elije una opción por favor</option>
@@ -337,13 +336,13 @@
                         <option value="09:30">09:30</option>
                         <option value="09:45">09:45</option>
                         <option value="10:00">10:00</option>
-                    </select><br><br>
+                    </select>
                     @elseif($area == "Cámara hiperbárica")
                     <label for="recipient-name" class="col-form-label">Consultorio*:</label><select class="form-control"
                         id="consultorio" name="consultorio">
                         <option selected disabled value="">Elije una opción por favor</option>
                         <option value="1">1</option>
-                    </select><br><br>
+                    </select>
                     <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                         id="hora" name="hora" required>
                         <option selected disabled value="">Elije una opción por favor</option>
@@ -414,7 +413,7 @@
                             <option value="16">16</option>
                             <option value="17">17</option>
                             <option value="18">18</option>
-                        </select><br><br>
+                        </select>
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
                             <option selected disabled value="">Elije una opción por favor</option>
@@ -427,7 +426,7 @@
                             <option value="14:00">14:00</option>
                             <option value="15:00">15:00</option>
                             <option value="16:00">16:00</option>
-                        </select><br><br>
+                        </select>
                         @elseif($area == "Acupuntura")
                         <label for="recipient-name" class="col-form-label">Consultorio*:</label><select
                             class="form-control" id="consultorio" name="consultorio">
@@ -436,7 +435,7 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                        </select><br><br>
+                        </select>
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
                             <option selected disabled value="">Elije una opción por favor</option>
@@ -449,7 +448,7 @@
                             <option value="14:30">14:30</option>
                             <option value="15:30">15:30</option>
                             <option value="16:00">16:00</option>
-                        </select><br><br>
+                        </select>
                         @elseif($area == "Gerontología")
                         <label for="recipient-name" class="col-form-label">Consultorio*:</label><select
                             class="form-control" id="consultorio" name="consultorio">
@@ -460,7 +459,7 @@
                             <option value="4">4</option>
                             <option value="5">5</option>
                             <option value="6">6</option>
-                        </select><br><br>
+                        </select>
                         @if($nomdia != "Sabado")
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
@@ -474,7 +473,7 @@
                             <option value="14:00">14:00</option>
                             <option value="15:00">15:00</option>
                             <option value="16:00">16:00</option>
-                        </select><br><br>
+                        </select>
                         @elseif($nomdia == "Sabado")
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
@@ -485,14 +484,14 @@
                             <option value="11:00">11:00</option>
                             <option value="12:00">12:00</option>
                             <option value="13:00">13:00</option>
-                        </select><br><br>
+                        </select>
                         @endif
                         @elseif($area == "Ultrasonido")
                         <label for="recipient-name" class="col-form-label">Consultorio*:</label><select
                             class="form-control" id="consultorio" name="consultorio">
                             <option selected disabled value="">Elije una opción por favor</option>
                             <option value="1">1</option>
-                        </select><br><br>
+                        </select>
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
                             <option selected disabled value="">Elije una opción por favor</option>
@@ -500,12 +499,12 @@
                             <option value="10:30">10:30</option>
                             <option value="11:00">11:00</option>
                             <option value="11:30">11:30</option>
-                        </select><br><br>
+                        </select>
                         @elseif($area == "Rayos x")
                         <label>Consultorio*:</label><select class="form-control" id="consultorio" name="consultorio">
                             <option selected disabled value="">Elije una opción por favor</option>
                             <option value="1">1</option>
-                        </select><br><br>
+                        </select>
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
                             <option selected disabled value="">Elije una opción por favor</option>
@@ -526,7 +525,7 @@
                             <option value="15:30">15:30</option>
                             <option value="16:00">16:00</option>
                             <option value="16:30">16:30</option>
-                        </select><br><br>
+                        </select>
                         @elseif($area == "Rehabilitación")
                         <label for="recipient-name" class="col-form-label">Consultorio*:</label><select
                             class="form-control" id="consultorio" name="consultorio">
@@ -541,7 +540,7 @@
                             <option value="8">8</option>
                             <option value="9">9</option>
                             <option value="10">10</option>
-                        </select><br><br>
+                        </select>
                         @if($nomdia != "Sabado")
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
@@ -555,7 +554,7 @@
                             <option value="14:00">14:00</option>
                             <option value="15:00">15:00</option>
                             <option value="16:00">16:00</option>
-                        </select><br><br>
+                        </select>
                         @elseif($nomdia == "Sabado")
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
@@ -566,14 +565,14 @@
                             <option value="11:00">11:00</option>
                             <option value="12:00">12:00</option>
                             <option value="13:00">13:00</option>
-                        </select><br><br>
+                        </select>
                         @endif
                         @elseif($area == "Laboratorio")
                         <label for="recipient-name" class="col-form-label">Consultorio*:</label><select
                             class="form-control" id="consultorio" name="consultorio">
                             <option selected disabled value="">Elije una opción por favor</option>
                             <option value="1">1</option>
-                        </select><br><br>
+                        </select>
                         <label for="recipient-name" class="col-form-label">Hora*:</label><select class="form-control"
                             id="hora" name="hora" required>
                             <option selected disabled value="">Elije una opción por favor</option>
