@@ -1,10 +1,29 @@
-    @extends('layouts.header')
-    @section('body')
-    @if(empty(session('session_id')))
-    <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=iniciarsesion/">
-    @else
+@extends('layouts.header')
+@section('body')
+@if(empty(session('session_id')))
+<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=iniciarsesion/">
+@else
+<div class="inner-banner-w3ls">
+    <div class="container">
 
-    <h1>Reporte de citas de área de quiropráctica</h1>
+    </div>
+    <!-- //banner 2 -->
+</div>
+<!-- page details -->
+<div class="breadcrumb-agile">
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{route('index')}}">Inicio</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Todas las citas</li>
+        </ol>
+    </div>
+</div>
+<!-- //page details -->
+
+<!-- contact -->
+<h1>Reporte de citas de área de quiropráctica</h1>
     <form action="{{route('buscarcq')}}" method="POST">
         {{ csrf_field() }}
         @if(empty($termb))
@@ -18,13 +37,13 @@
         {{ csrf_field() }}
         @if(empty($termb))
         <input type="text" value="" name="tb1" hidden>
-        <input type="submit" value="Descargar formato pdf">
-        <input type="button" onclick="location.href='{{route('buscarusuario')}}';" value="Agendar nueva cita" />
-        <input type="button" onclick="location.href='{{route('reportesexcelcitas')}}';" value="Descargar reportes excel" />
+        <input type="button" onclick="location.href='{{route('buscarusuario')}}';" class="btn_apt" value="Agendar nueva cita" />
+        <input type="submit" value="Descargar formato pdf" class="btn_apt">
+        <input type="button" onclick="location.href='{{route('reportesexcelcitas')}}';" class="btn_apt" value="Descargar reportes excel" />
         @else
+        <input type="button" onclick="location.href='{{route('buscarusuario')}}';" class="btn_apt" value="Agendar nueva cita" />
         <input type="text" value="{{$termb}}" name="tb1" hidden>
-        <input type="submit" value="Descargar formato pdf">
-        <input type="button" onclick="location.href='{{route('buscarusuario')}}';" value="Agendar nueva cita" />
+        <input type="submit" class="btn_apt" value="Descargar formato pdf">
         @endif
     </form>
     <div class="table-responsive">
@@ -107,5 +126,50 @@
     @else
     <label align="center">Se muestran los resultados para {{$termb}}</label>
     @endif
-@endif
-@endsection
+
+        <!-- Js files -->
+        <!-- JavaScript -->
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <!-- Default-JavaScript-File -->
+
+        <!-- banner slider -->
+        <script src="js/responsiveslides.min.js"></script>
+        <script>
+            $(function () {
+                $("#slider4").responsiveSlides({
+                    auto: true,
+                    pager: true,
+                    nav: true,
+                    speed: 1000,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
+            });
+        </script>
+        <!-- //banner slider -->
+
+        <!-- fixed navigation -->
+        <script src="js/fixed-nav.js"></script>
+        <!-- //fixed navigation -->
+
+        <!-- smooth scrolling -->
+        <script src="js/SmoothScroll.min.js"></script>
+        <!-- move-top -->
+        <script src="js/move-top.js"></script>
+        <!-- easing -->
+        <script src="js/easing.js"></script>
+        <!--  necessary snippets for few javascript files -->
+        <script src="js/medic.js"></script>
+
+        <script src="js/bootstrap.js"></script>
+        <!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+        <!-- //Js files -->
+
+        @endif
+        @endsection

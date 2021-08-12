@@ -138,21 +138,43 @@
 									<a class="dropdown-item" href="{{route('about')}}">Servicios</a>
 								</div>
 							</li>
-							<li class="nav-item mx-lg-4 my-lg-0 my-3">
-								<a class="nav-link" href="{{route('buscarusuario')}}">Agendar Cita</a>
+							@if(empty(session('session_id')))
+						<li class="nav-item mx-lg-4 my-lg-0 my-3">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Citas</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	
+									<a class="dropdown-item" href="{{route('buscarusuario')}}">Agendar Cita</a>
+									<a class="dropdown-item" href="{{route('pacientes')}}">Ver mis citas</a>
+								</div>
 							</li>
+							<li class="nav-item mx-lg-4 my-lg-0 my-3">
 							<li class="nav-item">
 								<a class="nav-link" href="{{route('contact')}}">Conócenos</a>
 							</li>
 
 							<!-- login -->
-							@if(empty(session('session_id')))
 						</ul>
 						<a href="#" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" data-toggle="modal"
 							data-target="#exampleModalCenter1">
 							<i class="fas fa-sign-in-alt mr-2"></i>Ingresar</a>
 						<!-- //login -->
 						@else
+						<li class="nav-item mx-lg-4 my-lg-0 my-3">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones admin</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{route('citasq')}}">Ver todas las citas</a>
+								<a class="dropdown-item" href="{{route('pacientes')}}">Ver pacientes</a>
+								@if(session('session_tipo') == "2")
+								<a class="dropdown-item" href="{{route('usuarios')}}">Ver usuarios</a>
+								@endif
+							</div>
+						</li>
+						</li>
+						<li class="nav-item">
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sesión de {{session('session_name')}} {{session('session_ap')}}</a>
@@ -160,6 +182,7 @@
 
 								<a class="dropdown-item" href="{{route('bye')}}">Cerrar sesión</a>
 							</div>
+						</li>
 						</li>
 						</ul>
 						@endif
@@ -252,7 +275,7 @@
 									<a href="gallery.html">Gallery</a>
 								</li>-->
 								<li class="mt-2">
-									<a href="appointment.html">Agendar Cita</a>
+									<a href="{{route('buscarusuario')}}">Agendar Cita</a>
 								</li>
 								<li class="mt-2">
 									<a href="{{route('contact')}}">Conocenos</a>
@@ -263,7 +286,6 @@
 				</div>
 				<div class="border-top mt-5 pt-lg-4 pt-3 pb-lg-0 pb-3 text-center">
 					<p class="copy-right-grids mt-lg-1">2021 AGENDA CLÍNICA DIGITAL. Todos los derechos reservados
-						<!--<a href="https://w3layouts.com/" target="_blank">W3layouts</a>-->
 					</p>
 				</div>
 			</div>

@@ -332,7 +332,7 @@ public function cancelarcita(Request $request)
         $mensaje2 = "Su cita con fecha:".$request['fecha'].", "."hora:".$request['hora'].", "."y folio:".$folio." "."a sido cancelda";
         $citaexiste = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion' AND id = '$id'");
         $citaexiste1 = DB::select("SELECT * FROM citas_quiropractica WHERE folio = '$folion'");
-        $email = $request['corre'];
+        $email = $request['correo'];
         if($estatus != "CANCELADA"){
             if ($fecha < $fechaactual ){
                 echo '<script language="javascript">alert("Fecha no puede ser anterior al día de hoy"); history.go(-1);</script>';
@@ -371,7 +371,7 @@ public function cancelarcita(Request $request)
             );
             echo'<script type="text/javascript">
             alert("Cita cancelada");
-            window.location.href="citasq/";
+            window.location.href="citasq";
             </script>';
             Mail::to($request->correo)->send(new OrdendeEnvio($data));
             }else{
@@ -537,8 +537,8 @@ public function cancelarcita(Request $request)
         $fijo = strtoupper($request['telefono']);
         $procedencia = strtoupper($request['procedencia']);
         $email = strtoupper($request['correo']);
-        $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', genero = '$genero' ,CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' ");
-        echo '<script language="javascript">alert("Paciente actualizado correctamente"); window.location.href="pacientes/";</script>';
+        $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', genero = '$genero' ,CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' WHERE id='$id' AND CURP='$curp'");
+        echo '<script language="javascript">alert("Paciente actualizado correctamente"); window.location.href="pacientes";</script>';
     }
 
     

@@ -277,7 +277,7 @@
 				<div class="col-lg-4">
 					<img src="images/service9.jpg" alt="" class="img-fluid" />
 					<h3 class="mt-3 text-dark">Cámara Hiperbárica </h3>
-					<p class="my-3">La oxigenación hiperbárica permite a los pacientes que sus niveles de saturación del oxígeno sean incrementados considerablemente, así como en los fluidos de todo el cuerpo. Los resultados de esta saturación de oxígeno, son un incremento acelerado en la formación de nuevos vasos capilares y vasos sanguíneos periféricos. Ello permite una recuperación mucho en los tejidos y la piel asi como en os procesos post-operatorios.</p>
+					<p class="my-3">La oxigenación hiperbárica permite a los pacientes que sus niveles de saturación del oxígeno sean incrementados considerablemente; ello permite una recuperación mucho más rápido en los tejidos y la piel asi como en los procesos post-operatorios</p>
 				</div>
 			</div>
 			</div>
