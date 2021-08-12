@@ -11,6 +11,25 @@
         }
     }
 </script>
+<div class="inner-banner-w3ls">
+    <div class="container">
+
+    </div>
+    <!-- //banner 2 -->
+</div>
+<!-- page details -->
+<div class="breadcrumb-agile">
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{route('index')}}">Inicio</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Todas tus citas</li>
+        </ol>
+    </div>
+</div>
+<!-- //page details -->
+
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>

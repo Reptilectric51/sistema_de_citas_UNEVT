@@ -146,7 +146,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	
 									<a class="dropdown-item" href="{{route('buscarusuario')}}">Agendar Cita</a>
-									<a class="dropdown-item" href="{{route('pacientes')}}">Ver mis citas</a>
+									<a class="dropdown-item" href="{{route('buscarcita')}}">Ver mis citas</a>
 								</div>
 							</li>
 							<li class="nav-item mx-lg-4 my-lg-0 my-3">
