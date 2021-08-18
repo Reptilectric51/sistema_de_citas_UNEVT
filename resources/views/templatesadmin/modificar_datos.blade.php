@@ -59,8 +59,9 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-phone" class="col-form-label">Curp*:</label>
-                        <input type="text" maxlength="16" class="form-control" placeholder="Verifica tu correo antes de enviar"
-                            name="curp" id="recipient-phone" value="{{$datos->CURP}}" required="">
+                        <input type="text" maxlength="16" class="form-control"
+                            placeholder="Verifica tu correo antes de enviar" name="curp" id="recipient-phone"
+                            value="{{$datos->CURP}}" required="">
                     </div>
                     <div class="form-group">
                         <p>Género:</p>
@@ -113,4 +114,47 @@
 </div>
 @endforeach
 @endif
+<!-- Js files -->
+<!-- JavaScript -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- Default-JavaScript-File -->
+
+<!-- banner slider -->
+<script src="js/responsiveslides.min.js"></script>
+<script>
+    $(function () {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: true,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function () {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+</script>
+<!-- //banner slider -->
+
+<!-- fixed navigation -->
+<script src="js/fixed-nav.js"></script>
+<!-- //fixed navigation -->
+
+<!-- smooth scrolling -->
+<script src="js/SmoothScroll.min.js"></script>
+<!-- move-top -->
+<script src="js/move-top.js"></script>
+<!-- easing -->
+<script src="js/easing.js"></script>
+<!--  necessary snippets for few javascript files -->
+<script src="js/medic.js"></script>
+
+<script src="js/bootstrap.js"></script>
+<!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+<!-- //Js files -->
 @endsection
