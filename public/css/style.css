@@ -408,7 +408,7 @@ button.submit:hover {
     padding: 13px 24px;
     letter-spacing: 1px;
     font-size: 14px;
-    background: #4575bd;
+    background: #008F39;
     display: inline-block;
     border: 1px solid #ffffffba;
 }
@@ -679,14 +679,14 @@ h6.text-white {
 }
 
 .welcome-left h3 {
-    color: #4776be;
+    color: #008F39;
     font-size: 38px;
     letter-spacing: 1px;
     font-weight: 600;
 }
 
 .welcome-left h6 {
-    color: #4776be;
+    color: #008F39;
     letter-spacing: 1px;
     font-size: 18px;
 }
