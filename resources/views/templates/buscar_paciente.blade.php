@@ -52,7 +52,7 @@
 						</div>
 						<div class="form-group">
 							<label for="datepicker" class="col-form-label">Selecciona en Áerea</label>
-							<select required="" class="form-control" name="area">
+							<select required="" class="form-control" id="area" name="area">
 								<option value="">Elige una Opción</option>
 								<option>Acupuntura</option>
 								<option value="Cámara hiperbárica">Cámara Hiperbárica</option>
@@ -83,6 +83,25 @@
 		$(function () {
 			$("#datepicker,#datepicker1").datepicker();
 		});
+		$('.btn_apt').click(function () {
+            send_area($('#area').val());
+        });
+		
+		function send_area(area){
+			$.ajax({
+    url : "{{route('buscardatospaciente')}}",
+    method : "POST",
+    //dataType:"json",
+    data : {area:area},
+            
+    success : function(data){
+     
+        //console.log(data);   
+         
+    }       
+          
+  }) 
+		}
 	</script>
 	<!-- //End-date-piker -->
 

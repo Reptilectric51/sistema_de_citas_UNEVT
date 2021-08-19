@@ -437,6 +437,7 @@
                                 </select>
                             </div>
                             @endif
+                            <input type="hidden" value="{{$_POST['area']}}" hidden class="area" readonly>
                             <input type="text" value="{{$curp}}" hidden name="curp" readonly>
                             <input type="submit" value="Agendar mi Cita" class="btn_apt">
                     </form>
@@ -451,15 +452,41 @@
     crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
+        var a = $('.area').val();
+        var normalize = (function() {
+  var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç", 
+      to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+      mapping = {};
+ 
+  for(var i = 0, j = from.length; i < j; i++ )
+      mapping[ from.charAt( i ) ] = to.charAt( i );
+ 
+  return function( str ) {
+      var ret = [];
+      for( var i = 0, j = str.length; i < j; i++ ) {
+          var c = str.charAt( i );
+          if( mapping.hasOwnProperty( str.charAt( i ) ) )
+              ret.push( mapping[ c ] );
+          else
+              ret.push( c );
+      }      
+      return ret.join( '' );
+  }
+ 
+})();
+//}
+//console.log( normalize(area) );
+var area = normalize(a);
         $('#fecha').on('change', function () {
             clear();
-            fechas_ocupadas($(this).val(), $('#consultorio').val());
+            fechas_ocupadas($(this).val(), $('#consultorio').val(),area);
         });
 
         $('#consultorio').on('change', function () {
             clear();
-            fechas_ocupadas($('#fecha').val(), $(this).val());
+            fechas_ocupadas($('#fecha').val(), $(this).val(),area);
         });
+        
         function clear() {
             $("#hora option").each(function () {
                 if ($(this).val() != '') {
@@ -467,7 +494,7 @@
                 }
             });
         }
-        function fechas_ocupadas(fecha, consultorio) {
+        function fechas_ocupadas(fecha, consultorio, area) {
 
             $.ajaxSetup({
                 headers: {
@@ -480,8 +507,10 @@
                 dataType: "json",
                 data: { val: 1 },
                 success: function (data) {
+                      
                     $.each(data, function (i, val) {
-                        if (val.fecha == fecha && val.consultorio == consultorio)
+                        console.log(val.area,area);
+                        if (val.fecha == fecha && val.consultorio == consultorio && val.area == area)
                             $('#hora option[value="' + val.hora + '"]').prop('disabled', true);
                     });
                 }
