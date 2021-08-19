@@ -9,20 +9,6 @@
     </div>
     <!-- //banner 2 -->
 </div>
-<!-- page details -->
-<div class="breadcrumb-agile">
-    <div aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="{{route('index')}}">Inicio</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Todas las citas</li>
-        </ol>
-    </div>
-</div>
-<!-- //page details -->
-
-<!-- contact -->
 <h1>Reporte de citas de área de quiropráctica</h1>
     <form action="{{route('buscarcq')}}" method="POST">
         {{ csrf_field() }}
@@ -117,59 +103,51 @@
             </tbody>
             @endforeach
     </table>
-    {{-- Pagination --}}
-    <div class="d-flex justify-content-center">
-        {!! $citas->links() !!}
-    </div>
+        {!! $citas->links('vendor.pagination.bootstrap-4') !!}
 </div>
 @if(empty($termb))
     @else
     <label align="center">Se muestran los resultados para {{$termb}}</label>
     @endif
-
-        <!-- Js files -->
-        <!-- JavaScript -->
-        <script src="js/jquery-2.2.3.min.js"></script>
-        <!-- Default-JavaScript-File -->
-
-        <!-- banner slider -->
-        <script src="js/responsiveslides.min.js"></script>
-        <script>
-            $(function () {
-                $("#slider4").responsiveSlides({
-                    auto: true,
-                    pager: true,
-                    nav: true,
-                    speed: 1000,
-                    namespace: "callbacks",
-                    before: function () {
-                        $('.events').append("<li>before event fired.</li>");
-                    },
-                    after: function () {
-                        $('.events').append("<li>after event fired.</li>");
-                    }
-                });
-            });
-        </script>
-        <!-- //banner slider -->
-
-        <!-- fixed navigation -->
-        <script src="js/fixed-nav.js"></script>
-        <!-- //fixed navigation -->
-
-        <!-- smooth scrolling -->
-        <script src="js/SmoothScroll.min.js"></script>
-        <!-- move-top -->
-        <script src="js/move-top.js"></script>
-        <!-- easing -->
-        <script src="js/easing.js"></script>
-        <!--  necessary snippets for few javascript files -->
-        <script src="js/medic.js"></script>
-
-        <script src="js/bootstrap.js"></script>
-        <!-- Necessary-JavaScript-File-For-Bootstrap -->
-
-        <!-- //Js files -->
-
         @endif
-        @endsection
+
+    <!-- Js files -->
+	<!-- JavaScript -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- Default-JavaScript-File -->
+
+	<!-- banner slider -->
+	<script src="js/responsiveslides.min.js"></script>
+	<script>
+		$(function () {
+			$("#slider4").responsiveSlides({
+				auto: true,
+				pager: true,
+				nav: true,
+				speed: 1000,
+				namespace: "callbacks",
+				before: function () {
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after: function () {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+		});
+	</script>
+	<!-- //banner slider -->
+    
+	<!-- smooth scrolling -->
+	<script src="js/SmoothScroll.min.js"></script>
+	<!-- move-top -->
+	<script src="js/move-top.js"></script>
+	<!-- easing -->
+	<script src="js/easing.js"></script>
+	<!--  necessary snippets for few javascript files -->
+	<script src="js/medic.js"></script>
+
+	<script src="js/bootstrap.js"></script>
+	<!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+	<!-- //Js files -->
+    @endsection

@@ -17,7 +17,7 @@ class sistemcontroller extends Controller
 public function buscarcitas(Request $request)
 {
     $curp = strtoupper($request['curp']);
-    $citas = citas_quiropractica::where("curp", "=", $curp)->simplepaginate(5);
+    $citas = citas_quiropractica::where("curp", "=", $curp)->simplepaginate(100);
         if(count($citas)==0){
             echo '<script type="text/javascript">
             alert("No se han encontrado citas por favor verifique sus datos");
@@ -76,7 +76,7 @@ public function cancelarcita(Request $request)
 //-------------------------------------------Agendar citas------------------------------------//
     public function citas_quiropractica()
     {
-        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->simplepaginate(10);
+        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->paginate(10);
         return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
