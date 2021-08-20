@@ -26,7 +26,7 @@
 			<div class="w3ls-titles text-center mb-5">
 				<h3 class="title">Agenda tú cita</h3>
 				<span>
-					<i class="fas fa-user-md"></i>
+				<i class="fas fa-calendar-plus"></i>
 				</span>
 				<p class="mt-2" style="color:darkred;">Los datos recabados por su persona, serán manejados en estricta confidencialidad, conforme al artículo 40 de la Ley de Protección de Datos Personales en Posesión de Sujetos Obligados del Estado de México y Municipios.</p>
 			</div>
@@ -43,7 +43,7 @@
 							<input type="text" class="form-control" placeholder="Ingresa tu CURP aquí" minlength="18" maxlength="18" name="curp" id="recipient-name" required="">
 						</div>
 						<div class="form-group">
-							<label for="recipient-phone" class="col-form-label">Correo electronico*:</label>
+							<label for="recipient-phone" class="col-form-label">Correo electronico:</label>
 							<input type="email" class="form-control" placeholder="Por favor ingresa tú correo electronico en caso de no tener dejalo vacio" name="correo" id="recipient-phone" >
 						</div>
 						<div class="form-group">

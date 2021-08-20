@@ -25,7 +25,7 @@
         <div class="w3ls-titles text-center mb-5">
             <h3 class="title">Agenda tú cita</h3>
             <span>
-                <i class="fas fa-user-md"></i>
+            <i class="fas fa-calendar-plus"></i>
             </span>
             <p class="mt-2" style="color:darkred;">Los datos recabados por su persona, serán manejados en estricta
                 confidencialidad, conforme al artículo 40 de la Ley de Protección de Datos Personales en Posesión de
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nombre(s)*:</label>
                             <input type="text" class="form-control" value="{{$pacien->nombre}}"
-                                placeholder="Ejemplo: Yair" name="Name" id="recipient-name" required="">
+                                placeholder="Ejemplo: Yair" name="nombre" id="recipient-name" required="">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Apellido Paterno*:</label>
@@ -132,7 +132,7 @@
                                 id="recipient-name" required="" maxlength="">
                         </div>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Número de telefono fijo*:</label>
+                            <label for="recipient-name" class="col-form-label">Número de telefono fijo:</label>
                             <input type="text" class="form-control" pattern="[0-9]{10}" placeholder="Verifica los 10 digitos" name="telefono"
                                 id="recipient-name" maxlength="10">
                         </div>

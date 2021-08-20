@@ -27,9 +27,7 @@ Route::name('misdatos')->get('misdatos/', function (){
     return view('templatesadmin.misdatos');
 });
 
-Route::name('about')->get('about/', function (){
-    return view('templates.about');
-});
+Route::name('about')->get('about/', 'App\Http\Controllers\sistemcontroller@about');
 
 Route::name('contact')->get('contact/', function (){
     return view('templates.contact');

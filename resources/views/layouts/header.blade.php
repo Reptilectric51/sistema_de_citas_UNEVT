@@ -120,6 +120,7 @@
 							<li class="nav-item mx-lg-4 my-lg-0 my-3">
 								<a class="nav-link" href="{{route('about')}}">Acerca de Nosotros</a>
 							</li>
+							@if(empty($servicios))
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información</a>
@@ -128,6 +129,16 @@
 									<a class="dropdown-item" href="{{route('about')}}">Servicios</a>
 								</div>
 							</li>
+							@else
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+									<a class="dropdown-item scroll" href="#services">Servicios</a>
+								</div>
+							</li>
+							@endif
 							@if(empty(session('session_id')))
 						<li class="nav-item mx-lg-4 my-lg-0 my-3">
 							<li class="nav-item dropdown">

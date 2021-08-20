@@ -88,6 +88,7 @@ public function cancelarcita(Request $request)
         $curp = $request['curp'];
         $area = $request['area'];
         $fecha = $request['fecha'];
+        
         $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
             $nomdia = $dias[date('N', strtotime($fecha))-1];
         if($nomdia == "Domingo"){
@@ -539,6 +540,13 @@ public function cancelarcita(Request $request)
         $email = strtoupper($request['correo']);
         $actualizar = DB::update("UPDATE pacientes SET nombre = '$nombre', apellido_paterno = '$apellidop', apellido_materno = '$apellidom', genero = '$genero' ,CURP = '$curp', numero_movil = '$celular', numero_fijo = '$fijo', lugar_de_procedencia = '$procedencia', email = '$email' WHERE id='$id' AND CURP='$curp'");
         echo '<script language="javascript">alert("Paciente actualizado correctamente"); window.location.href="pacientes";</script>';
+    }
+
+
+    public function about(){
+        $servicios = '32';
+        return view("templates.about")
+        ->with(["servicios"=>$servicios]);
     }
 
     
