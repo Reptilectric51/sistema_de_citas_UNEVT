@@ -58,7 +58,7 @@
 								<option value="Cámara hiperbárica">Cámara Hiperbárica</option>
 								<option value="Quiropractica">Quiropráctica</option>
 								<option>Rehabilitación</option>
-								<option value="">Gerontología</option>
+								<option value="Gerontología">Gerontología</option>
 								<option>Ultrasonido</option>
 								<option value="Laboratorio">Laboratorio de Análisis Clínicos</option>
 								<option>Rayos x</option>
