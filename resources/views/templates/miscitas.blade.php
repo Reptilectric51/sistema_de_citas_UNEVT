@@ -2,12 +2,9 @@
 @section('body')
 <script>
     function confirmacion() {
-        var mensaje = confirm("Recuerda que si cancelas tu cita no se te rembolsara el costo de la misma");
+        var mensaje = confirm("Estas seguro de cancelar tu cita. Recuerda qué si ya pagaste deberas contactar con la clinica para solicitar un rembolso.");
         if (mensaje) {
             document.getElementById("form1").submit();
-        }
-        else {
-            alert("¡Haz denegado el mensaje!");
         }
     }
 </script>
