@@ -88,7 +88,8 @@ public function cancelarcita(Request $request)
         $curp = $request['curp'];
         $area = $request['area'];
         $fecha = $request['fecha'];
-        
+        echo $prev_date;
+        /*
         $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
             $nomdia = $dias[date('N', strtotime($fecha))-1];
         if($nomdia == "Domingo"){

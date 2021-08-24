@@ -66,7 +66,10 @@ Route::name('fechas_ocupadas')->post('fechas_ocupadas/', 'App\Http\Controllers\s
 Route::name('guardarcitaqadmin')->post('guardarcitaqa/', 'App\Http\Controllers\sistemcontroller@guardar_cita_quiropracticad');
 Route::name('comprobantecitasqpdf')->post('comprobantecitasqpdf/', 'App\Http\Controllers\sistemcontroller@comprobantecitasqpdf');
 Route::name('buscarusuario')->get('buscarusuario/', function (){
-    return view('templates.buscar_paciente');
+    $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+    $next_date = date('Y-m-d', strtotime($date .' +1 day'));
+    return view('templates.buscar_paciente')
+    ->with(['next_date' => $next_date]);
 });
 Route::name('buscardatospaciente')->post('buscardatospaciente/', 'App\Http\Controllers\sistemcontroller@buscar_usuario');
 Route::name('como_pagar')->get('como_pagar/', function (){

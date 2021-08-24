@@ -142,7 +142,7 @@
                                 id="recipient-name" required="">
                         </div>
                         @endif
-                        <input type="text" value="{{$area}}" name="area" hiden readonly>
+                        <input type="text" value="{{$area}}" name="area" hidden readonly>
                         <input type="date" value="{{$fecha}}" name="fecha" id="fecha" required readonly hidden>
                         @if($area == "Quiropractica")
                         <div class="form-group">

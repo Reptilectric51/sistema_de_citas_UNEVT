@@ -48,7 +48,7 @@
 						</div>
 						<div class="form-group">
 							<label for="datepicker" class="col-form-label">Ingrese la fecha de su cita*:</label>
-							<input placeholder="Fecha" name="fecha" class="date form-control" id="fecha" type="date" value="" required="" />
+							<input placeholder="Fecha" name="fecha" class="date form-control" min="{{$next_date}}" id="fecha" type="date" value="" required="" />
 						</div>
 						<div class="form-group">
 							<label for="datepicker" class="col-form-label">Selecciona en Áerea</label>
