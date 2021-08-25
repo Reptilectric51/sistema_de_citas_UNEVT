@@ -136,7 +136,7 @@
 					</div>
 					<div class="col-3 agile-why-text p-0 text-right">
 						<div class="wthree_features_grid">
-							<img style="width: 169px;height: 166px;" src="images/Marina.jpeg">
+							<img style="width: 169px;height: 166px; border-radius:150px;" src="images/Marina.jpeg">
 						</div>
 					</div>
 				</div>
@@ -150,7 +150,7 @@
 					</div>
 					<div class="col-3 agile-why-text p-0">
 						<div class="wthree_features_grid">
-							<img style="width: 169px;height: 166px;" src="images/Stefania.jpeg">
+							<img style="width: 169px;height: 166px; border-radius:150px;" src="images/Stefania.jpeg">
 						</div>
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 					</div>
 					<div class="col-3 agile-why-text p-0 text-right">
 						<div class="wthree_features_grid">
-							<img style="width: 169px;height: 166px;" src="images/Judith.jpeg">
+							<img style="width: 169px;height: 166px; border-radius:150px;" src="images/Judith.jpeg">
 						</div>
 					</div>
 				</div>
@@ -183,7 +183,7 @@
 					</div>
 					<div class="col-3 agile-why-text p-0">
 						<div class="wthree_features_grid">
-							<img style="width: 169px;height: 166px;" src="images/Maritza.jpeg">
+							<img style="width: 169px;height: 166px; border-radius:150px;" src="images/Maritza.jpeg">
 						</div>
 					</div>
 				</div>
@@ -198,7 +198,7 @@
 					</div>
 					<div class="col-3 agile-why-text p-0 text-right">
 						<div class="wthree_features_grid">
-							<img style="width: 169px;height: 166px;" src="images/Rebeca.jpeg">
+							<img style="width: 169px;height: 166px; border-radius:150px;" src="images/Rebeca.jpeg">
 						</div>
 					</div>
 				</div>
@@ -212,7 +212,7 @@
 					</div>
 					<div class="col-3 agile-why-text p-0">
 						<div class="wthree_features_grid">
-							<img style="width: 169px;height: 166px;" src="images/Fernanda.jpeg">
+							<img style="width: 169px;height: 166px; border-radius:150px;" src="images/Fernanda.jpeg">
 						</div>
 					</div>
 				</div>

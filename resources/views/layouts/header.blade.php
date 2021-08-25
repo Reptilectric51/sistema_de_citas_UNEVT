@@ -99,7 +99,7 @@
 					<!-- logo -->
 					<h1>
 						<a class="navbar-brand font-weight-bold font-italic" href="{{route('index')}}">
-							<img style="width: 69px;height: 69px;" src="images/logo.png">
+						<img style="width: 69px;height: 69px;" src="images/logo.png">	
 							<span>Clínica</span>Integral
 							<i class="fas fa-hospital"></i>
 						</a>
