@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 
 <head>
 	<title>AGENDA CLÍNICA DIGITAL.</title>

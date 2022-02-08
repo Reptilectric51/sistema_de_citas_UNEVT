@@ -17,7 +17,7 @@ class sistemcontroller extends Controller
 public function buscarcitas(Request $request)
 {
     $curp = strtoupper($request['curp']);
-    $citas = citas_quiropractica::where("curp", "=", $curp)->simplepaginate(100);
+    $citas = citas_quiropractica::where("curp", "=", $curp)->simplepaginate(10);
         if(count($citas)==0){
             echo '<script type="text/javascript">
             alert("No se han encontrado citas por favor verifique sus datos");
@@ -29,6 +29,8 @@ public function buscarcitas(Request $request)
         }
 }
 
+
+//--------------------------------------------Cancelar cita-----------------------------------//
 public function cancelarcita(Request $request)
 {
     $folio = $request['folio'];
@@ -73,14 +75,14 @@ public function cancelarcita(Request $request)
         ->with(['pacientes' => $pacientes]);
     }
 
-//-------------------------------------------Agendar citas------------------------------------//
+//-------------------------------------------Ver citas------------------------------------//
     public function citas_quiropractica()
     {
         $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->paginate(10);
         return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
-
+//------------------------------------------Nueva cita---------------------------------------//
     public function buscar_usuario(Request $request)
     {
         date_default_timezone_set('America/Mexico_City');
@@ -122,6 +124,8 @@ public function cancelarcita(Request $request)
         /**/
     } 
 
+
+//-----------------------------------------Agendar nueva cita-------------------------------------//
     public function agendar_cita_quiropractica()
     {
         return view("templates.agendarCita_quiropractica");
@@ -246,6 +250,8 @@ public function cancelarcita(Request $request)
         }
     }
 
+
+//----------------------------------------Comprobante cita----------------------------------------//
     public function comprobantecqpdf(Request $request){
         $folio = $request['folio'];
         if($folio != "CANCELADO"){
@@ -272,6 +278,8 @@ public function cancelarcita(Request $request)
         }
     }
 
+
+//-----------------------------------------Modificar cita-----------------------------------------//
     public function modificarcita(Request $request){
         $id = $request['id'];
         $cestatus = $request['estatus'];
