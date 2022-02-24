@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\citas_quiropractica;
 use App\Models\pacientes;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\mail;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\OrdendeEnvio;
 use App\Mail\EnvioComprobante;
 

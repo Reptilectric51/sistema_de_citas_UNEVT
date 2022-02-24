@@ -30,6 +30,7 @@ class rootController extends Controller
            'usuario' => $request['usuario'],
            'correo' => $request['correo'],
            'tipo_de_sesión' => strtoupper($request['sesion']),
+           'area' => $request['area'],
            'contraseña' => $request['contraseña'], 
            'estatus' => $estatus
         ));
@@ -60,23 +61,24 @@ class rootController extends Controller
         $correo = $request['correo'];
         $tipo_de_sesion = $request['sesion'];
         $contraseña = $request['contraseña'];
+        $area = $request['area'];
         $estatus = $request['estatus'];
         $userexist = DB::select("SELECT * FROM administradores  WHERE id = '$id'AND usuario = '$usuario'");
         $userexist1 = DB::select("SELECT * FROM administradores  WHERE usuario = '$usuario'");
         $emailexist = DB::select("SELECT * FROM administradores  WHERE id = '$id' AND correo = '$correo'");
         $emailexist1 = DB::select("SELECT * FROM administradores  WHERE correo = '$correo'");
-        if(((count($userexist)==1 && count($userexist1)==0) || (count($userexist1)== 1 && count($userexist) == 1) || (count($userexist)==0 && count($userexist1)==0)) || ((count($emailexist)==1 && count($emailexist1)==0) || (count($emailexist1)== 1 && count($emailexist) == 1) || (count($emailexist)==0 && count($emailexist1)==0))){
+        if(((count($userexist)==0 && count($userexist1)==1) || (count($userexist1)== 1 && count($userexist) == 1) || (count($userexist)==0 && count($userexist1)==0)) || ((count($emailexist)==1 && count($emailexist1)==0) || (count($emailexist1)== 1 && count($emailexist) == 1) || (count($emailexist)==0 && count($emailexist1)==0))){
             $guardar_usuario = DB::update("UPDATE administradores SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$correo', tipo_de_sesión = '$tipo_de_sesion', estatus='$estatus', contraseña = '$contraseña' WHERE id='$id'");
             echo'<script type="text/javascript">
                         alert("Usuario actualizado");
-                        window.location.href="usuarios/";
+                        window.location.href="usuarios";
                         </script>';           
         }else{
             echo'<script type="text/javascript">
                         alert("El usuario ya ha sido registrado anteriormente");
                         history.go(-1);
                         </script>';  
-        }
+        }/**/
 
     }
 }

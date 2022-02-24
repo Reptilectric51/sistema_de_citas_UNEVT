@@ -33,7 +33,7 @@
             </div>
             <div class="contact-right-w3l appoint-form">
                 <h5 class="title-w3 text-center mb-5">Por favor llena el siguiente formulario con tus datos para
-                    agendar tú cita</h5>
+                    para consultar tus citas.</h5>
                 <form action="{{route('buscandocita')}}" method="post">
                     @csrf
                     <div class="form-group">
@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" placeholder="Ingrese su curp a 18 digitos" name="curp"
                             id="recipient-name" required="">
                     </div>
-                    <input type="submit" value="Agendar mi Cita" class="btn_apt">
+                    <input type="submit" value="Buscar mi cita" class="btn_apt">
                 </form>
             </div>
         </div>

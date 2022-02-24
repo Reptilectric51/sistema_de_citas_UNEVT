@@ -15,8 +15,8 @@ class loginController extends Controller
         $consulta = DB::select("SELECT * FROM administradores WHERE correo = '$usuario' OR usuario = '$usuario' AND contraseña = '$contraseña' AND estatus = 'ACTIVO'");
         if(count($consulta) == 0){
             echo '<script type="text/javascript">
-            alert("Usuario no existente por favor intentelo de nuevo");
-            window.location.href="iniciarsesion/";
+            alert("Usuario no existente o desactivado por favor intentelo de nuevo");
+            window.location.href="iniciarsesion";
             </script>';
         }else{
             $request->session()->put('session_id', $consulta[0]->id);

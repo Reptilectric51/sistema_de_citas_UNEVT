@@ -36,7 +36,8 @@
             </div>
             <div class="contact-right-w3l appoint-form">
                 <h5 class="title-w3 text-center mb-5">Llenar con los nuevos datos del usuario</h5>
-                <form action="{{route('crearusuario')}}" method="post">
+                <form action="{{route('guardar_usuario')}}" method="post">
+                    @csrf
                     <input type="text" name="id" value="{{$user->id}}" readonly hidden>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre(s)*:</label>
@@ -63,7 +64,7 @@
                     <div class=" form-group">
                         <label for="recipient-name" class="col-form-label">Correo*:</label>
                         <input type="email" class="form-control" placeholder="Verifica el correo antes de enviar"
-                            value="{{$user->correo}}" name="email" id="recipient-phone" required="">
+                            value="{{$user->correo}}" name="correo" id="recipient-phone" required="">
                     </div>
                     <div class="form-group">
                         <label for="datepicker" class="col-form-label">Tipo de usuario</label>
@@ -83,6 +84,7 @@
                             @endif
                         </select>
                     </div>
+                    @if($user->estatus == "ACTIVO")
                     <div class="form-group">
                         <label for="datepicker" class="col-form-label">Tipo de usuario</label>
                         <select required="" name="estatus" class="form-control">
@@ -90,12 +92,21 @@
                             <option>DESACTIVADO</option>
                         </select>
                     </div>
+                    @else
+                    <div class="form-group">
+                        <label for="datepicker" class="col-form-label">Tipo de usuario</label>
+                        <select required="" name="estatus" class="form-control">
+                            <option>DESACTIVADO</option>
+                            <option>ACTIVO</option>
+                        </select>
+                    </div>
+                    @endif
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Contraseña*:</label>
                         <input type="password" class="form-control" value="{{$user->contraseña}}" name="contraseña" id="recipient-name" required="">
                     </div>
 
-                    <input type="submit" value="Agendar mi Cita" class="btn_apt">
+                    <input type="submit" value="Actualizar usuario" class="btn_apt">
                 </form>
             </div>
             <div class="clerafix"></div>

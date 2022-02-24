@@ -14,7 +14,7 @@
             <li class="breadcrumb-item">
                 <a href="{{route('index')}}">Inicio</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Todas las citas</li>
+            <li class="breadcrumb-item active" aria-current="page">Todos los usuarios</li>
         </ol>
     </div>
 </div>
@@ -47,6 +47,9 @@
                     <h3>Contraseña</h3>
                 </th>
                 <th>
+                    <h3>Área</h3>
+                </th>
+                <th>
                     <h3>Estatus</h3>
                 </th>
                 <th>
@@ -68,6 +71,7 @@
                     <td>Superusuario</td>
                     @endif
                     <td>{{$usuario->contraseña}}</td>
+                    <td>{{$usuario->area}}</td>
                     <td>{{$usuario->estatus}}</td>
                     <td>
                         <form action="{{route('editar_usuario')}}" method="POST">

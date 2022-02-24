@@ -36,6 +36,7 @@
             <div class="contact-right-w3l appoint-form">
                 <h5 class="title-w3 text-center mb-5">Llenar con los datos del nuevo usuario</h5>
                 <form action="{{route('crearusuario')}}" method="post">
+                    @csrf
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre(s)*:</label>
                         <input type="text" class="form-control" placeholder="Ejemplo: Yair" name="nombre"
@@ -61,7 +62,7 @@
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Correo*:</label>
                         <input type="email" class="form-control" placeholder="Verifica el correo antes de enviar"
-                            name="email" id="recipient-phone" required="">
+                            name="correo" id="recipient-phone" required="">
                     </div>
                     <div class="form-group">
                         <label for="datepicker" class="col-form-label">Tipo de usuario</label>
@@ -73,11 +74,26 @@
                         </select>
                     </div>
                     <div class="form-group">
+							<label for="datepicker" class="col-form-label">Selecciona en Áerea</label>
+							<select required="" class="form-control" id="area" name="area">
+								<option value="">Elige una Opción</option>
+								<option>Acupuntura</option>
+								<option value="Cámara hiperbárica">Cámara Hiperbárica</option>
+								<option value="Quiropractica">Quiropráctica</option>
+								<option>Rehabilitación</option>
+								<option value="Gerontología">Gerontología</option>
+								<option>Ultrasonido</option>
+								<option value="Laboratorio">Laboratorio de Análisis Clínicos</option>
+								<option>Rayos x</option>
+                                <option>Administración</option>
+							</select>
+						</div>
+                    <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Contraseña*:</label>
                         <input type="password" class="form-control" name="contraseña" id="recipient-name" required="">
                     </div>
 
-                    <input type="submit" value="Agendar mi Cita" class="btn_apt">
+                    <input type="submit" value="Guardar nuevo usuario" class="btn_apt">
                 </form>
             </div>
             <div class="clerafix"></div>
