@@ -9,7 +9,7 @@
     </div>
     <!-- //banner 2 -->
 </div>
-<h1>Reporte de citas de área de quiropráctica</h1>
+<h1>Se muestran todas la citas:</h1>
     <form action="{{route('buscarcq')}}" method="POST">
         {{ csrf_field() }}
         @if(empty($termb))
