@@ -71,8 +71,10 @@
                         <input type="radio" id="Femenino" value="Femenino" name="genero"><label
                             class="col-form-label">Femenino</label>
                         @elseif($datos->genero == "FEMENINO")
-                        <input type="radio" id="Masculino" value="Masculino" name="genero"><label>Masculino</label>
-                        <input type="radio" id="Femenino" value="Femenino" checked name="genero"><label>Femenino</label>
+                        <input type="radio" id="Masculino" value="Masculino" name="genero"><label
+                            class="col-form-label">Masculino</label>
+                        <input type="radio" id="Femenino" value="Femenino" checked name="genero"><label
+                            class="col-form-label">Femenino</label>
                         @endif
                     </div>
                     <div class="form-group">
