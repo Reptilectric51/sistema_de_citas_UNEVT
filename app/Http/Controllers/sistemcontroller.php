@@ -78,7 +78,7 @@ public function cancelarcita(Request $request)
 //-------------------------------------------Ver citas------------------------------------//
     public function citas_quiropractica()
     {
-        $citas = DB::table('citas_quiropractica')->orderBy('fecha', 'ASC')->paginate(10);
+        $citas = DB::table('citas_quiropractica')->orderBy('created_at', 'DESC')->paginate(10);
         return view("templatesadmin.citas_quiropractica")
         ->with(['citas' => $citas]);
     }
